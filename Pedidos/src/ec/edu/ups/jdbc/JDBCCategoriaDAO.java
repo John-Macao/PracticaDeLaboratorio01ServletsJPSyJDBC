@@ -41,10 +41,10 @@ public class JDBCCategoriaDAO extends JDBCGenericDAO<Categoria, Integer> impleme
 
 	public List<Categoria> find() {
 		List<Categoria> list = new ArrayList<Categoria>();
-		ResultSet rs = sql.query("SELECT * FROM usuario");
+		ResultSet rs = sql.query("SELECT * FROM categoria");
 		try {
 			while (rs.next()) {
-				list.add(new Categoria(rs.getInt("usu_id"), rs.getString("cat_nombre")));
+				list.add(new Categoria(rs.getInt("cat_id"), rs.getString("cat_nombre")));
 			}
 
 		} catch (SQLException e) {
