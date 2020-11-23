@@ -14,7 +14,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 	
 	public Usuario login(String usuairo, String contrasena) {
 		Usuario usuario = null;
-		ResultSet rs = sql.query("SELECT * FROM Persona WHERE usu_usuario='" + usuario + "' AND usu_contrasena='" + contrasena +"'");
+		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_usuario='" + usuario + "' AND usu_contrasena='" + contrasena +"'");
 		try {
 			if (rs != null && rs.next()) {
 				usuario = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido"),
@@ -41,7 +41,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 
 	public List<Usuario> find() {
 		List<Usuario> list = new ArrayList<Usuario>();
-		ResultSet rs = sql.query("SELECT * FROM Persona");
+		ResultSet rs = sql.query("SELECT * FROM usuario");
 		try {
 			while (rs.next()) {
 				list.add(new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),
@@ -61,7 +61,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 
 	public Usuario read(Integer id) {
 		Usuario usuario = null;
-		ResultSet rs = sql.query("SELECT * FROM Persona WHERE usu_id=" + id);
+		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_id=" + id);
 		try {
 			if (rs != null && rs.next()) {
 				usuario = new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),
@@ -74,7 +74,20 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		return usuario;
 	}
 
-
+	public int empresaId(int id) {
+		int empresa=0;
+		ResultSet rs = sql.query("SELECT usu_emp_id FROM usuario WHERE usu_id=" + id);
+		
+		try {
+			if (rs != null && rs.next()) {
+				empresa = rs.getInt("usu__emp_id");
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+		return empresa;
+		
+	}
 
 
 }
