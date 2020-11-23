@@ -6,4 +6,9 @@ public class test {
 	public void mensaje () {
 		 m = "hola";
 	}
+	
+		public void probando () {
+			 m = "hola";
+		}
+		
 }
