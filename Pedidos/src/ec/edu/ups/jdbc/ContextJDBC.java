@@ -58,7 +58,7 @@ public class ContextJDBC {
 	}
 
 	
-	protected static ContextJDBC getJDBC1() {
+	protected static ContextJDBC getJDBC() {
 		if (jdbc == null) {
 			jdbc = new ContextJDBC();
 		}
