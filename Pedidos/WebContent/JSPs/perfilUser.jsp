@@ -12,8 +12,8 @@
 	
 	<h1>Persona encontrada</h1>		
 		
-	<p>Id: ${p.id}</p>
-	<p>Nombre: ${p.nombre}</p>
-	<p>Apellid: ${p.apellido}</p>
+	<p>Id: ${usuN.id}</p>
+	<p>Nombre: ${usuN.nombre}</p>
+	<p>Apellid: ${usuN.apellido}</p>
 </body>
 </html>
