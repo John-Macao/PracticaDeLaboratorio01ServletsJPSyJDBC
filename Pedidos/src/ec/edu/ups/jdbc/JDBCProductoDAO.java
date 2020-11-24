@@ -15,7 +15,12 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 	}
 	
 	public void crear(Producto producto, int empresaId, int categoriaId) {
+		
+		/*
 		sql.update("INSERT producto VALUES (" + producto.getId() + ", '" + producto.getNombre() + "', "
+				+ producto.getCantidad() + ", '"+ producto.getEstado() + "', " + empresaId + categoriaId + ")");
+		*/
+		sql.update("INSERT producto VALUES (0, '" + producto.getNombre() + "', "
 				+ producto.getCantidad() + ", '"+ producto.getEstado() + "', " + empresaId + categoriaId + ")");
 	}
 
