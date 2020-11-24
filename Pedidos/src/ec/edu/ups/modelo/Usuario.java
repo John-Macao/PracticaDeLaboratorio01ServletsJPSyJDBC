@@ -9,18 +9,20 @@ public class Usuario {
 	private String apellido;
 	private String usuario;
 	private String contrasena;
+	private String rol;
 	private ArrayList<Cabecera> cabeceras;
 	
 	public Usuario() {
 		
 	}
 	
-	public Usuario(int id, String nombre, String apellido, String usuario, String contrasena, ArrayList<Cabecera> cabeceras) {
+	public Usuario(int id, String nombre, String apellido, String usuario, String contrasena, String rol, ArrayList<Cabecera> cabeceras) {
 		this.setId(id);
 		this.setNombre(nombre);
 		this.setApellido(apellido);
 		this.setUsuario(usuario);
 		this.setContrasena(contrasena);
+		this.setRol(rol);
 		this.setCabeceras(cabeceras);
 	}
 
@@ -70,6 +72,14 @@ public class Usuario {
 
 	public void setCabeceras(ArrayList<Cabecera> cabeceras) {
 		this.cabeceras = cabeceras;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 	
 	

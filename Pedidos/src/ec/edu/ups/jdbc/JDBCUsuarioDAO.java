@@ -17,8 +17,8 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_usuario='" + usuario + "' AND usu_contrasena='" + contrasena +"'");
 		try {
 			if (rs != null && rs.next()) {
-				usuario = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido"),
-						rs.getString("usuario"), rs.getString("contrasena"), null);
+				usuario = new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),
+						rs.getString("usu_usuario"), rs.getString("usu_contrasena"), rs.getString("usu_rol"), null);
 			}
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
@@ -45,7 +45,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		try {
 			while (rs.next()) {
 				list.add(new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),
-						rs.getString("usu_usuario"), rs.getString("usu_contrasena"), null));
+						rs.getString("usu_usuario"), rs.getString("usu_contrasena"), rs.getString("usu_rol"), null));
 			}
 
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		try {
 			if (rs != null && rs.next()) {
 				usuario = new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),
-						rs.getString("usu_usuario"), rs.getString("usu_contrasena"), null);
+						rs.getString("usu_usuario"), rs.getString("usu_contrasena"), rs.getString("usu_rol"), null);
 			}
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
