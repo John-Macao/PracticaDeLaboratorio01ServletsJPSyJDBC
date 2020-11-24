@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.dao.UsuarioDAO;
+import ec.edu.ups.jdbc.JDBCUsuarioDAO;
 import ec.edu.ups.modelo.Usuario;
 
 /**
@@ -17,14 +18,14 @@ import ec.edu.ups.modelo.Usuario;
 @WebServlet("/IniciarSesionController")
 public class IniciarSesionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private UsuarioDAO usuarioDao;
+    private JDBCUsuarioDAO usuarioDao;
     private Usuario usuario;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public IniciarSesionController() {
-    	usuarioDao = DAOFactory.getFactory().getUsuarioDAO();
+    	usuarioDao = new JDBCUsuarioDAO();
     	usuario = new Usuario();
         // TODO Auto-generated constructor stub
     }
@@ -37,10 +38,11 @@ public class IniciarSesionController extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String url = null;
 		try {
-			int id = Integer.valueOf(request.getParameter("id"));
-			usuario = usuarioDao.read(id);
-			request.setAttribute("persona", usuario);
-			url = "/JSPs/login.jsp";
+			String user = String.valueOf(request.getParameter("user"));
+			String contra = String.valueOf(request.getParameter("contra"));
+			usuario = usuarioDao.login(user, contra);
+			request.setAttribute("user", user);
+			url = "/JSPs/perfil.jsp";
 		} catch (Exception e) {
 			url = "/JSPs/error.jsp";
 		}

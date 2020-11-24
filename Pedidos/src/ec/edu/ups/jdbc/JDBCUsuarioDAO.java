@@ -9,8 +9,6 @@ import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.modelo.Usuario;
 
 public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements UsuarioDAO {
-
-	
 	
 	public Usuario login(String usuairo, String contrasena) {
 		Usuario usuario = null;
