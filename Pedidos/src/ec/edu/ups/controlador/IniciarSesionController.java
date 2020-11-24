@@ -64,12 +64,18 @@ public class IniciarSesionController extends HttpServlet {
 			String contra = String.valueOf(request.getParameter("contra"));
 			usuario = usuarioDao.login(user, contra);
 			
-			//System.out.println("hola perra");
+			System.out.println(user);
+			System.out.println(contra);
+			System.out.println(usuario.getUsuario());
+			System.out.println(usuario.getContrasena());
+			System.out.println(usuario.getRol());
 			
-			if (usuario.getRol() == "a") {
+			if (usuario.getRol().equals("a")) {
+				System.out.println("entra al if");
 				request.setAttribute("usuario", usuario);	
 				url = "/JSPs/perfilAdmin.jsp";
 			} else if (usuario.getRol() == "u") {
+				System.out.println("entra al else");
 				request.setAttribute("usuario", usuario);	
 				url = "/JSPs/perfilUser.jsp";
 			}
