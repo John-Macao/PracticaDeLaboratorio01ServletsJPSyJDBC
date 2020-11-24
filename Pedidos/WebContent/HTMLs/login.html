@@ -21,12 +21,13 @@
 
     <div class="jump"></div>
 
-    <form action="/Pedidos/IniciarSesionController">
+    <form action="/Pedidos/IniciarSesionController" method="post">
         <label for="user">Usuario: </label>
-        <input id="tf_user" type="text" name="user">
+        <input type="text" name="user">
 
         <label for="contra">Contrasena: </label>
-        <input id="tf_contra" type="password" name="contra">
+        <input type="password" name="contra">
+        
         <input type="submit" value="Iniciar Sesion">
     </form>
 </body>
