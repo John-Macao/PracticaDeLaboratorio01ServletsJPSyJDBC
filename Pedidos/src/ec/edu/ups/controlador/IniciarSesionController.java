@@ -29,6 +29,30 @@ public class IniciarSesionController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+    	String url = null;
+    	
+		try {
+			String user = String.valueOf(request.getParameter("user"));
+			String contra = String.valueOf(request.getParameter("contra"));
+			usuario = usuarioDao.login(user, contra);
+
+			if (usuario.getRol() == "a") {
+				request.setAttribute("usuario", usuario);	
+				url = "/JSPs/perfilAdmin.jsp";
+			} else if (usuario.getRol() == "u") {
+				request.setAttribute("usuario", usuario);	
+				url = "/JSPs/perfilUser.jsp";
+			}
+		} catch (Exception e) {
+			url = "/HTMLs/login.html";
+		}
+		//getServletContext().getRequestDispatcher(url).forward(request, response);
+		getServletContext().getRequestDispatcher(url).forward(request, response);
+	}
+    
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -40,7 +64,7 @@ public class IniciarSesionController extends HttpServlet {
 			String contra = String.valueOf(request.getParameter("contra"));
 			usuario = usuarioDao.login(user, contra);
 			
-			System.out.println("hola perra");
+			//System.out.println("hola perra");
 			
 			if (usuario.getRol() == "a") {
 				request.setAttribute("usuario", usuario);	
