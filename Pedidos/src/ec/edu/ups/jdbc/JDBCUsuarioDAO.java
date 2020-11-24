@@ -12,7 +12,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 	
 	public Usuario login(String usuairo, String contrasena) {
 		Usuario usuario = null;
-		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_usuario='" + usuario + "' AND usu_contrasena='" + contrasena +"'");
+		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_usuario='" + usuairo + "' AND usu_contrasena='" + contrasena +"'");
 		try {
 			if (rs != null && rs.next()) {
 				usuario = new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),

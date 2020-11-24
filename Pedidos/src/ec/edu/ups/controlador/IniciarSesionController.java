@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.dao.UsuarioDAO;
-import ec.edu.ups.jdbc.JDBCUsuarioDAO;
 import ec.edu.ups.modelo.Usuario;
 
 /**
@@ -18,14 +17,14 @@ import ec.edu.ups.modelo.Usuario;
 @WebServlet("/IniciarSesionController")
 public class IniciarSesionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private JDBCUsuarioDAO usuarioDao;
+    private UsuarioDAO usuarioDao;
     private Usuario usuario;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public IniciarSesionController() {
-    	usuarioDao = new JDBCUsuarioDAO();
+    	usuarioDao = DAOFactory.getFactory().getUsuarioDAO();
     	usuario = new Usuario();
         // TODO Auto-generated constructor stub
     }
@@ -41,8 +40,14 @@ public class IniciarSesionController extends HttpServlet {
 			String user = String.valueOf(request.getParameter("user"));
 			String contra = String.valueOf(request.getParameter("contra"));
 			usuario = usuarioDao.login(user, contra);
-			request.setAttribute("user", user);
-			url = "/JSPs/perfil.jsp";
+			
+			if (usuario != null) {
+				request.setAttribute("usuario", usuario);	
+				url = "/JSPs/perfil.jsp";
+			} else {
+				request.setAttribute("fallo", false);
+				url = "/HTMLs/login.html";
+			}
 		} catch (Exception e) {
 			url = "/JSPs/error.jsp";
 		}
