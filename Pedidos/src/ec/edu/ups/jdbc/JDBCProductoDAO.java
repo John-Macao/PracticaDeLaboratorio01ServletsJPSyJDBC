@@ -21,7 +21,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 				+ producto.getCantidad() + ", '"+ producto.getEstado() + "', " + empresaId + categoriaId + ")");
 		*/
 		sql.update("INSERT producto VALUES (0, '" + producto.getNombre() + "', "
-				+ producto.getCantidad() + ", '"+ producto.getEstado() + "', " + empresaId + categoriaId + ")");
+				+ producto.getCantidad() + ", '"+ producto.getEstado() + "', " + empresaId +","+ categoriaId + ")");
 	}
 
 	public Producto read(Integer id) {
