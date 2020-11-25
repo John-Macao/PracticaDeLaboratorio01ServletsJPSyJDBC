@@ -18,7 +18,10 @@
 	<p>Apellido: ${usuA.apellido}</p>
 	<p>Empresa: ${empA.nombre} </p>
 	
-	<a href="/Pedidos/JSPs/administrar_productos.jsp">Aministrar Productos</a>
+	<a href="/Pedidos/JSPs/administrar_productos.jsp">Administrar Productos</a>
+	<a href="/Pedidos/JSPs/registrar_producto.jsp?emp=${empA.id}">Registrar Producto</a>
+	<a href="/Pedidos/ListarProductosController">Modificar Producto</a>
+	<a href="/Pedidos/BuscarProductosController">Buscar Producto</a>
 	<a href="/Pedidos/JSPs/listar_pedidos.jsp">Listar Pedidos</a>
 	<a href="/Pedidos/JSPs/administrar_pedidos.jsp">Administrar Pedidos</a>
 	

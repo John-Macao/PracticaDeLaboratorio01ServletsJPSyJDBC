@@ -8,7 +8,6 @@ public abstract class DAOFactory {
 		return factory;
 	}
 	
-	
 	public abstract CabeceraDAO getCabeceraDAO();
 	
 	public abstract CategoriaDAO getCategoriaDAO();
