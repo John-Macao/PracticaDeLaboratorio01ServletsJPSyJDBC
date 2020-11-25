@@ -57,9 +57,9 @@ public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements 
 		return null;
 	}
 	
-	public List<Detalle> buscarPorCabecera(int empresaId) {
+	public List<Detalle> buscarPorCabecera(int cabeceraId) {
 		List<Detalle> list = new ArrayList<Detalle>();
-		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_emp_id=" + empresaId);
+		ResultSet rs = sql.query("SELECT * FROM peddetalle WHERE det_cab_id=" + cabeceraId);
 		try {
 			while (rs.next()) {
 				list.add(new Detalle(rs.getInt("det_id"), rs.getInt("det_cantidad"), null));
@@ -69,6 +69,20 @@ public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements 
 			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
 		}
 		return list;
+	}
+	
+	public int obtenerProductoId(Detalle detalle) {
+		int productoId = 0;
+		ResultSet rs = sql.query("SELECT det_pro_id FROM peddetalle WHERE det_id=" + detalle.getId());
+		try {
+			if (rs != null && rs.next()) {
+				productoId = rs.getInt("det_pro_id");
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+
+		return productoId;
 	}
 	
 
