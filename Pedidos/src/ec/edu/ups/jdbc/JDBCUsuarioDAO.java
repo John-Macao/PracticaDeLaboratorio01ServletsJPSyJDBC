@@ -93,7 +93,7 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		
 		try {
 			if (rs != null && rs.next()) {
-				empresa = rs.getInt("usu__emp_id");
+				empresa = rs.getInt("usu_emp_id");
 			}
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());

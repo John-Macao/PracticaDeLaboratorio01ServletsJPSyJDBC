@@ -9,11 +9,18 @@
 </head>
 <body>
 	<c:set var="usuA" scope="request" value="${usuario}" />
+	<c:set var="empA" scope="request" value="${empresa}" />
 
-	<h1>Persona encontrada</h1>		
+	<h1>Administrador</h1>		
 		
 	<p>Id: ${usuA.id}</p>
 	<p>Nombre: ${usuA.nombre}</p>
-	<p>Apellid: ${usuA.apellido}</p>
+	<p>Apellido: ${usuA.apellido}</p>
+	<p>Empresa: ${empA.nombre} </p>
+	
+	<a href="/Pedidos/JSPs/administrar_productos.jsp">Aministrar Productos</a>
+	<a href="/Pedidos/JSPs/listar_pedidos.jsp">Listar Pedidos</a>
+	<a href="/Pedidos/JSPs/administrar_pedidos.jsp">Administrar Pedidos</a>
+	
 </body>
 </html>

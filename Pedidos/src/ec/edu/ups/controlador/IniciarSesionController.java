@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ec.edu.ups.dao.DAOFactory;
+import ec.edu.ups.dao.EmpresaDAO;
 import ec.edu.ups.dao.UsuarioDAO;
+import ec.edu.ups.modelo.Empresa;
 import ec.edu.ups.modelo.Usuario;
 
 /**
@@ -18,14 +20,19 @@ import ec.edu.ups.modelo.Usuario;
 public class IniciarSesionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UsuarioDAO usuarioDao;
+    private EmpresaDAO empresaDao;
     private Usuario usuario;
+    private Empresa empresa;
+    private int empresa_id;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public IniciarSesionController() {
     	usuarioDao = DAOFactory.getFactory().getUsuarioDAO();
+    	empresaDao = DAOFactory.getFactory().getEmpresaDAO();
     	usuario = new Usuario();
+    	empresa = new Empresa();
         // TODO Auto-generated constructor stub
     }
     
@@ -37,19 +44,17 @@ public class IniciarSesionController extends HttpServlet {
 			String user = String.valueOf(request.getParameter("user"));
 			String contra = String.valueOf(request.getParameter("contra"));
 			usuario = usuarioDao.login(user, contra);
-			
-			System.out.println(user);
-			System.out.println(contra);
-			System.out.println(usuario.getUsuario());
-			System.out.println(usuario.getContrasena());
-			System.out.println(usuario.getRol());
-			
+
 			if (usuario.getRol().equals("a")) {
-				System.out.println("entra al if");
-				request.setAttribute("usuario", usuario);	
+				//System.out.println("entra al if");
+				empresa_id = usuarioDao.empresaId(usuario.getId());
+				empresa = empresaDao.read(empresa_id);
+				request.setAttribute("usuario", usuario);
+				request.setAttribute("empresa", empresa);
+				
 				url = "/JSPs/perfilAdmin.jsp";
 			} else if (usuario.getRol() == "u") {
-				System.out.println("entra al else");
+				//System.out.println("entra al else");
 				request.setAttribute("usuario", usuario);	
 				url = "/JSPs/perfilUser.jsp";
 			}
@@ -70,15 +75,15 @@ public class IniciarSesionController extends HttpServlet {
 			String contra = String.valueOf(request.getParameter("contra"));
 			usuario = usuarioDao.login(user, contra);
 			
-			System.out.println(user);
-			System.out.println(contra);
-			System.out.println(usuario.getUsuario());
-			System.out.println(usuario.getContrasena());
-			System.out.println(usuario.getRol());
-			
 			if (usuario.getRol().equals("a")) {
-				System.out.println("entra al if");
-				request.setAttribute("usuario", usuario);	
+				//Se busca la empresa del administrador
+				empresa_id = usuarioDao.empresaId(usuario.getId());
+				empresa = empresaDao.read(empresa_id);
+				
+				//Se envian los dos objetos
+				request.setAttribute("usuario", usuario);
+				request.setAttribute("empresa", empresa);
+				
 				url = "/JSPs/perfilAdmin.jsp";
 			} else if (usuario.getRol() == "u") {
 				System.out.println("entra al else");
