@@ -106,4 +106,34 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 		return list;
 	}
 
+	public List<Producto> buscarPorCateoria(int catId, int empId) {
+		List<Producto> list = new ArrayList<Producto>();
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_cat_id=" + catId + " AND pro_emp_id=" + empId);
+		try {
+			while (rs.next()) {
+				list.add(new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
+						rs.getString("pro_estado"), null));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
+		}
+		return list;
+	}
+	
+	public Producto buscarPorNombre(String nombre, int empId) {
+		Producto producto = null;
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_nombre='" + nombre + "' AND pro_emp_id=" + empId);
+		try {
+			if (rs != null && rs.next()) {
+				producto = new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
+						rs.getString("pro_estado"), null);
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+
+		return producto;
+	}
+	
 }
