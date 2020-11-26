@@ -12,7 +12,6 @@ public class JDBCCategoriaDAO extends JDBCGenericDAO<Categoria, Integer> impleme
 
 	public void create(Categoria categoria) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public Categoria read(Integer id) {
