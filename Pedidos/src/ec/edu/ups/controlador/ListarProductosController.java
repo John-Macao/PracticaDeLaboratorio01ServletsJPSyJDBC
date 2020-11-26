@@ -34,20 +34,25 @@ public class ListarProductosController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = null;
 		try {
-			listaProductos = productoDao.find();
-			System.out.println("Tamano de la lista recuperada: " + listaProductos.size());
-			request.setAttribute("productos", listaProductos);
-			url = "/JSPs/modificar_producto.jsp";
+			String page = request.getParameter("page");
+			
+			if(page.equals("m")) {
+				listaProductos = productoDao.find();
+				System.out.println("Tamano de la lista recuperada: " + listaProductos.size());
+				request.setAttribute("productos", listaProductos);
+				url = "/JSPs/modificar_producto.jsp?page=m";
+			}
 		} catch (Exception e) {
 			url = "/JSPs/error.jsp";
 		}
-		getServletContext().getRequestDispatcher(url).forward(request, response);
+		getServletContext().getRequestDispatcher(url).forward(request, response);	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
 		String url = null;
 		try {
 			listaProductos = productoDao.find();
@@ -58,6 +63,7 @@ public class ListarProductosController extends HttpServlet {
 			url = "/JSPs/error.jsp";
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);
+		*/
 	}
 
 }

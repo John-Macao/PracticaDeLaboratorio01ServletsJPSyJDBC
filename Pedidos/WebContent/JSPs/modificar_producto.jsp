@@ -7,11 +7,10 @@
 	<meta charset="ISO-8859-1">
 	<title>Modificar Productos</title>
 	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
-	<script></script>
 </head>
 <body>
-	
 	<c:set var="lista" scope="request" value="${productos}"/>
+	<c:set var="proInf" scope="request" value="${producto}"/>
 
 	<header>
         <img src="logo_ups.png" alt="Logo" width="700" height="100"/>
@@ -43,15 +42,29 @@
 				<td>${pro.nombre}</td>
 				<td>${pro.cantidad}</td>
 				<td>${pro.categoria}</td>
-				<td><input type="button" value="Modificar${pro.id}" onclick="mostrarFormulario()"></td>
+				<td><a href="/Pedidos/BuscarProductosController?pro=${pro.id}&page=m">Modificar ${pro.id}</a></td>
 			</tr>
-			
 		</c:forEach>
-	</table>
+		</table>
+		
+		<form action="/Pedidos/ModificarProductosController" method="get">
+			<label for="nombre">Nombre: </label>
+			<input type="text" name="nombre" value="${proInf.nombre}"/>
+			
+			<label for="cantidad">Cantidad: </label>
+			<input type="text" name="cantidad" value="${proInf.cantidad}">
+			
+			<label for="categoria">Categoria: </label>
+            <select name="categoria">
+                <option value="1">Perfumeria</option> 
+                <option value="2">Maquillaje</option>
+                <option value="3">Moda</option>
+            </select>
 
-        <form id="modificar" action="/Pedidos/ModificarProductosController" method="post">
-        	
-        </form>
+			<input type="text" value="${proInf.id}" name="producto_id" style="display:none">
+			
+    	<input type="submit" value="Modificar Producto">
+	</form>
     </div>
 </body>
 

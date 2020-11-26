@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,13 @@
 	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
 </head>
 <body>
-	<%
-		String emp_id = request.getParameter("emp");
+	<!--
+	<c:set var="usuario" scope="request" value="${usuA}" />
+	<c:set var="empresa" scope="request" value="${empA}" />
+	-->
+	<% 
+		String emp_id = request.getParameter("empresa_id");
+		String usu_id = request.getParameter("usuario_id");
 	%>
 
 	<header>
@@ -45,10 +51,19 @@
             </select>
 
 			<input type="text" value=<%= emp_id %> name="empresa_id" style="display:none">
+			<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
 
             <input type="submit" value="Registrar Producto">
         </form>
     </div>
+    
+    <br>
+    
+    <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
+    	<input type="text" name="emp_id" value=<%= emp_id %>  style="display:none">
+		<input type="text" name="usu_id" value=<%= usu_id %>  style="display:none">
+		<input type="submit" value="Regresar a Inicio">
+    </form>
 </body>
 
 <footer>

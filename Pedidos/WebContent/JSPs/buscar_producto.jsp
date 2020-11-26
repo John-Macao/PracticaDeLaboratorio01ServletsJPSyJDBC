@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,9 +25,27 @@
 
     <div class="jump"></div>
     
-    <div></div>
-    <div></div>
-    <div></div>
+    <form action="/Pedidos/BuscarController?bus=cat&page=b" method="get">
+    	<label for="categoria">Categoria: </label>
+    	<select name="categoria">
+            <option value="1">Perfumeria</option> 
+            <option value="2">Maquillaje</option>
+            <option value="3">Moda</option>
+        </select>
+        
+        <input type="submit" value="Buscar por Categoria">
+    </form>
+    
+    <form action="/Pedidos/BuscarController?bus=nom&page=b" method="get">
+    	<label for="nombre">Nombre del Producto: </label>
+    	<input type="text" name="nombre">
+    	
+    	<input type="submit" value="Buscar por Nombre">
+    </form>
+    
+    <aside>
+    
+    </aside>
 </body>
 
 <footer>
