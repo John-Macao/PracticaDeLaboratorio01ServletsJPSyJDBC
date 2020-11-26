@@ -25,13 +25,9 @@ public class RegistrarProductosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductoDAO productoDao;
 	private CategoriaDAO categoriaDao;
-	private EmpresaDAO empresaDao;
-	private UsuarioDAO usuarioDao;
 	
 	private Producto producto;
 	private Categoria categoria;
-	private Empresa empA;
-	private Usuario usuA;
 	
 	private int empresa_id;
 	private int usuario_id;
@@ -41,13 +37,9 @@ public class RegistrarProductosController extends HttpServlet {
     public RegistrarProductosController() {
         productoDao = DAOFactory.getFactory().getProductoDAO();
         categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
-        empresaDao = DAOFactory.getFactory().getEmpresaDAO();
-        usuarioDao = DAOFactory.getFactory().getUsuarioDAO();
         
         producto = new Producto();
         categoria = new Categoria();
-        empA = new Empresa();
-        usuA = new Usuario();
     }
 
 	/**
@@ -65,14 +57,10 @@ public class RegistrarProductosController extends HttpServlet {
 			producto.setCantidad(Integer.valueOf(request.getParameter("cantidad")));
 			producto.setEstado("h");
 			producto.setCategoria(categoria);
-			productoDao.crear(producto, empresa_id,categoria.getId());	
-			/*
-			empA = empresaDao.read(empresa_id);
-			usuA = usuarioDao.read(usuario_id);
-			request.setAttribute("empA", empA);
-			request.setAttribute("usuA", usuA);
-			*/
+			productoDao.crear(producto,empresa_id,categoria.getId());	
+			
 			url = "/JSPs/registrar_producto.jsp";
+			
 		} catch (Exception e) {
 			System.out.print(e);
 			url = "/JSPs/error.jsp";

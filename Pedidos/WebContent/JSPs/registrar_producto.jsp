@@ -9,10 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
 </head>
 <body>
-	<!--
-	<c:set var="usuario" scope="request" value="${usuA}" />
-	<c:set var="empresa" scope="request" value="${empA}" />
-	-->
 	<% 
 		String emp_id = request.getParameter("empresa_id");
 		String usu_id = request.getParameter("usuario_id");

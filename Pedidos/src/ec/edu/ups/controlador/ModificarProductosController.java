@@ -26,28 +26,25 @@ public class ModificarProductosController extends HttpServlet {
     	productoDao = DAOFactory.getFactory().getProductoDAO();
     	producto = new Producto();
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String url = null;
+    
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = null;
+		
 		try {
-			
 			producto.setId(Integer.valueOf(request.getParameter("producto_id")));
 			producto.setNombre(request.getParameter("nombre"));
 			producto.setCantidad(Integer.valueOf(request.getParameter("cantidad")));
 			producto.setEstado("h");
 			productoDao.update(producto);
 
-			url = "/ListarProductosController?page=m";
+			url = "/ListarProductosController";
 		} catch (Exception e) {
 			url = "/JSPs/error.jsp";
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);
-    }
-    
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
 }

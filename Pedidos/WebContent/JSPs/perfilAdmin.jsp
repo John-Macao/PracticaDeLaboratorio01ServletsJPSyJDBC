@@ -27,15 +27,15 @@
 	</form>
 	
 	<form action="/Pedidos/ListarProductosController" method="post">
-		<input type="text" name="empresa" value="${empA.id}" style="display:none">
-		<input type="text" name="usuario" value="${usuA.id}" style="display:none">
+		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
 		<input type="text" name="page" value="m" style="display:none">
 		<input type="submit" value="Modificar Productos">
 	</form>
 	
-	<form action="/Pedidos/BuscarProductosController" method="post">
-		<input type="text" name="empresa" value="${empA}" style="display:none">
-		<input type="text" name="usuario" value="${usuA}" style="display:none">
+	<form action="/Pedidos/JSPs/buscar_producto.jsp" method="post">
+		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
 		<input type="text" name="page" value="b" style="display:none">
 		<input type="submit" value="Buscar Productos">
 	</form>

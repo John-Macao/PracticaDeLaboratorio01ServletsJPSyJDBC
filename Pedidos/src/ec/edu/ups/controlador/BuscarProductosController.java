@@ -1,6 +1,8 @@
 package ec.edu.ups.controlador;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +21,11 @@ public class BuscarProductosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductoDAO productoDao;
 	private Producto producto;
+	private List<Producto> productos;
     
+	private int empresa_id;
+	private int usuario_id;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,12 +35,6 @@ public class BuscarProductosController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,25 +42,38 @@ public class BuscarProductosController extends HttpServlet {
 		try {
 			String control = request.getParameter("page");
 			String metodo = request.getParameter("bus");
+			usuario_id = Integer.valueOf(request.getParameter("usu_id"));
+			empresa_id = Integer.valueOf(request.getParameter("emp_id")); 
 			
 			if (control.equals("m")) {
-				int id = Integer.valueOf(request.getParameter("pro"));
-				producto = productoDao.read(id);
-				request.setAttribute("producto", producto);
-				url = "/ListarProductosController?page=m";
+				int pro_id = Integer.valueOf(request.getParameter("pro_id"));
 				
-			} else if(control.equals("b") && metodo.equals("cat")) {
-				//producto = productoDao.buscarPorCateoria(Integer.valueOf(request.getParameter("categoria")), Integer.valueOf(request.getParameter("emp")));
+				System.out.println("ID PRO " + pro_id);
+				producto = productoDao.read(pro_id);
 				request.setAttribute("producto", producto);
-				url = "/ListarProductosController?page=m";
+				request.setAttribute("empresa_id", empresa_id);
+				request.setAttribute("usuario_id", usuario_id);
+				
+				url = "/ListarProductosController";
+				
+			} else if (control.equals("b") && metodo.equals("cat")) {
+				productos = productoDao.buscarPorCateoria(Integer.valueOf(request.getParameter("categoria")), empresa_id);
+				request.setAttribute("productos", productos);
+				
+				url = "/JSPs/buscar_producto.jsp";
 				
 			} else if(control.equals("b") && metodo.equals("nom")) {
+				producto = productoDao.buscarPorNombre(request.getParameter("nombre"), empresa_id);
+				request.setAttribute("producto", producto);
 				
+				url = "/JSPs/buscar_producto.jsp";
 			}
 			
 		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
 			url = "/JSPs/error.jsp";
 		}
+		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 

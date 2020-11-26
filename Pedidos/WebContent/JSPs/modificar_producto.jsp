@@ -11,6 +11,8 @@
 <body>
 	<c:set var="lista" scope="request" value="${productos}"/>
 	<c:set var="proInf" scope="request" value="${producto}"/>
+	<c:set var="emp" scope="request" value="${empresa_id}"/>
+	<c:set var="usu" scope="request" value="${usuario_id}"/>
 
 	<header>
         <img src="logo_ups.png" alt="Logo" width="700" height="100"/>
@@ -42,12 +44,20 @@
 				<td>${pro.nombre}</td>
 				<td>${pro.cantidad}</td>
 				<td>${pro.categoria}</td>
-				<td><a href="/Pedidos/BuscarProductosController?pro=${pro.id}&page=m">Modificar ${pro.id}</a></td>
+				<td>
+					<form action="/Pedidos/BuscarProductosController" method="post">
+						<input type="text" value="m" name="page" style="display:none">
+						<input type="text" value="${pro.id}" name="pro_id" style="display:none"> 
+						<input type="text" name="emp_id" value="${emp}" style="display:none">
+						<input type="text" name="usu_id" value="${usu}" style="display:none">
+						<input type="submit" value="Modificar">
+					</form> 
+				</td>
 			</tr>
 		</c:forEach>
 		</table>
 		
-		<form action="/Pedidos/ModificarProductosController" method="get">
+		<form action="/Pedidos/ModificarProductosController" method="post">
 			<label for="nombre">Nombre: </label>
 			<input type="text" name="nombre" value="${proInf.nombre}"/>
 			
@@ -66,6 +76,14 @@
     	<input type="submit" value="Modificar Producto">
 	</form>
     </div>
+    
+    <br>
+    
+    <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
+    	<input type="text" name="emp_id" value="${emp}" style="display:none">
+		<input type="text" name="usu_id" value="${usu}" style="display:none">
+		<input type="submit" value="Regresar a Inicio">
+    </form>
 </body>
 
 <footer>
