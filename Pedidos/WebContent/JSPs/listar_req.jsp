@@ -12,37 +12,30 @@
 <div> llega JSP correcto</div>
 	<c:set var="cabecera" scope="request" value="${cab}" />
 	
-	<!-- 
 	<c:set var="detalle" scope="request" value="${det}" />
-	 -->
 	<h1>Listaaaaaa </h1>
 
 	<table>
 		<tr>
 			<td><strong>Id</strong></td>
 			<td><strong>estado</strong></td>
+			<td><strong>cantidad</strong></td>
+			
 		</tr>
 		<c:forEach var="c" items="${cabecera}">
 			<tr>
-				<td>${c.cab_id}</td>
-				<td>${u.cab_estado}</td>
+				<td>${c.id}</td>
+				<td>${c.estado}</td>
 			</tr>
 		</c:forEach>
 		
-		<!-- 
 		<c:forEach var="d" items="${detalle}">
 			<tr>
-				<td>${d.det_cantidad}</td>
+				<td>${d.cantidad}</td>
 			</tr>
 		</c:forEach>
-		 -->
 	</table>
 	
 	
-	<!-- 
-	<a href="/EjemploPersonaWebJDBC/index.html">Regresar al index</a>
-	 -->
-	
-
 </body>
 </html>

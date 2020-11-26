@@ -57,8 +57,7 @@ public class ListadoController extends HttpServlet {
 			
 			
 			request.setAttribute("cab", listCab);
-			
-			//request.setAttribute("det", listDet);
+			request.setAttribute("det", listDet);
 			
 			url = "/JSPs/listar_req.jsp";
 			
@@ -71,7 +70,7 @@ public class ListadoController extends HttpServlet {
 		
 		
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 	
 
