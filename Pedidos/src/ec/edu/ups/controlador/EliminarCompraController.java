@@ -65,7 +65,6 @@ public class EliminarCompraController extends HttpServlet {
 			url = "/HTMLs/login.html";
 		}
 		
-		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 
