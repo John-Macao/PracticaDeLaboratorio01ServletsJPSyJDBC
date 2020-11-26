@@ -28,7 +28,7 @@ public class JDBCCabeceraDAO extends JDBCGenericDAO<Cabecera, Integer> implement
 
 	public Cabecera read(Integer id) {
 		Cabecera cabecera = null;
-		ResultSet rs = sql.query("SELECT * FROM pedcabecera WHERE usu_id=" + id);
+		ResultSet rs = sql.query("SELECT * FROM pedcabecera WHERE cab_id=" + id);
 		try {
 			if (rs != null && rs.next()) {
 				cabecera = new Cabecera(rs.getInt("cab_id"), rs.getString("cab_estado"), null);
