@@ -72,6 +72,8 @@
                 <option value="3">Moda</option>
             </select>
 
+			<input type="text" name="emp_id" value="${emp}" style="display:none">
+			<input type="text" name="usu_id" value="${usu}" style="display:none">
 			<input type="text" value="${proInf.id}" name="producto_id" style="display:none">
 			
     	<input type="submit" value="Modificar Producto">

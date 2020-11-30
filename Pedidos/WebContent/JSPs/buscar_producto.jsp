@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
 </head>
 <body>
+
 	<% 
 		String emp_id = request.getParameter("empresa_id");
 		String usu_id = request.getParameter("usuario_id");
@@ -42,8 +43,8 @@
         
         <input type="text" name="bus" value="cat" style="display:none">
         <input type="text" name="page" value="b" style="display:none">
-        <input type="text" value=<%= emp_id %> name="emp_id" style="display:none">
-		<input type="text" value=<%= usu_id %>  name="usu_id" style="display:none">
+        <input type="text" value=<%= emp_id %> name="empresa_id" style="display:none">
+		<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
         
         <input type="submit" value="Buscar por Categoria">
     </form>
@@ -54,8 +55,8 @@
     	
     	<input type="text" name="bus" value="nom" style="display:none">
         <input type="text" name="page" value="b" style="display:none">
-    	<input type="text" value=<%= emp_id %> name="emp_id" style="display:none">
-		<input type="text" value=<%= usu_id %>  name="usu_id" style="display:none">
+    	<input type="text" value=<%= emp_id %> name="empresa_id" style="display:none">
+		<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
     	
     	<input type="submit" value="Buscar por Nombre">
     </form>

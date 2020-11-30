@@ -62,7 +62,7 @@ public class RegistrarProductosController extends HttpServlet {
 			url = "/JSPs/registrar_producto.jsp";
 			
 		} catch (Exception e) {
-			System.out.print(e);
+			System.out.print("Error Registrar: " + e);
 			url = "/JSPs/error.jsp";
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);
