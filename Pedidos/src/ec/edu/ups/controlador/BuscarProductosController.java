@@ -23,6 +23,7 @@ public class BuscarProductosController extends HttpServlet {
 	private Producto producto;
 	private List<Producto> productos;
     
+	private int producto_id;
 	private int empresa_id;
 	private int usuario_id;
 	
@@ -43,18 +44,19 @@ public class BuscarProductosController extends HttpServlet {
 			String control = request.getParameter("page");
 			String metodo = request.getParameter("bus");
 			usuario_id = Integer.valueOf(request.getParameter("usu_id"));
-			empresa_id = Integer.valueOf(request.getParameter("emp_id")); 
+			empresa_id = Integer.valueOf(request.getParameter("emp_id"));
 			
-			if (control.equals("m")) {
-				int pro_id = Integer.valueOf(request.getParameter("pro_id"));
+			if (control.equals("m") && metodo.equals("ide")) {
+				producto_id = Integer.valueOf(request.getParameter("pro_id"));
+				producto = productoDao.read(producto_id);
+				productos = productoDao.find();
 				
-				System.out.println("ID PRO " + pro_id);
-				producto = productoDao.read(pro_id);
-				request.setAttribute("producto", producto);
+				request.setAttribute("producto", producto);		
+				request.setAttribute("productos", productos);
 				request.setAttribute("empresa_id", empresa_id);
 				request.setAttribute("usuario_id", usuario_id);
 				
-				url = "/ListarProductosController";
+				url = "/JSPs/modificar_producto.jsp";
 				
 			} else if (control.equals("b") && metodo.equals("cat")) {
 				productos = productoDao.buscarPorCateoria(Integer.valueOf(request.getParameter("categoria")), empresa_id);
@@ -70,7 +72,7 @@ public class BuscarProductosController extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("ERROR: " + e);
+			System.out.println("Error buscar: " + e);
 			url = "/JSPs/error.jsp";
 		}
 		

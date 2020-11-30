@@ -47,6 +47,7 @@
 				<td>
 					<form action="/Pedidos/BuscarProductosController" method="post">
 						<input type="text" value="m" name="page" style="display:none">
+						<input type="text" value="ide" name="bus" style="display:none">
 						<input type="text" value="${pro.id}" name="pro_id" style="display:none"> 
 						<input type="text" name="emp_id" value="${emp}" style="display:none">
 						<input type="text" name="usu_id" value="${usu}" style="display:none">

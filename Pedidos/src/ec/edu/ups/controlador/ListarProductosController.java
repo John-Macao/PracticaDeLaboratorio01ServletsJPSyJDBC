@@ -33,11 +33,12 @@ public class ListarProductosController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = null;
+		System.out.println("Entra al Listado");
 		try {
 			String page = request.getParameter("page");
+			
 			int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 			int empresa_id = Integer.valueOf(request.getParameter("empresa_id")); 
-			
 			if(page.equals("m")) {
 				listaProductos = productoDao.find();
 				//System.out.println("Tamano de la lista recuperada: " + listaProductos.size());
@@ -47,6 +48,7 @@ public class ListarProductosController extends HttpServlet {
 				url = "/JSPs/modificar_producto.jsp";
 			}
 		} catch (Exception e) {
+			System.out.println("Error Listar: " + e);
 			url = "/JSPs/error.jsp";
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);	

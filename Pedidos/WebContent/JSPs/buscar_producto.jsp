@@ -9,13 +9,13 @@
 	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
 </head>
 <body>
-	<c:set var="lista" scope="request" value="${productos}"/>
-	<c:set var="proBus" scope="request" value="${producto}"/>
-
 	<% 
 		String emp_id = request.getParameter("empresa_id");
 		String usu_id = request.getParameter("usuario_id");
 	%>
+	
+	<c:set var="lista" scope="request" value="${productos}"/>
+	<c:set var="proBus" scope="request" value="${producto}"/>
 
 	<header>
         <img src="logo_ups.png" alt="Logo" width="700" height="100"/>

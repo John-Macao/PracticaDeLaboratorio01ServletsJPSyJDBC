@@ -11,11 +11,11 @@ import ec.edu.ups.jdbc.ContextJDBC;
 public class ContextJDBC {
 	
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/pedidos?serverTimezone=UTC";
-	//private static final String URL = "jdbc:mysql://127.0.0.1:3307/pedidos?serverTimezone=UTC";
+	//private static final String URL = "jdbc:mysql://localhost:3306/pedidos?serverTimezone=UTC";
+	private static final String URL = "jdbc:mysql://127.0.0.1:3307/pedidos?serverTimezone=UTC";
 	private static final String USER = "root";
-	//private static final String PASS = "Patito.123@456";
-	private static final String PASS = "admin";
+	private static final String PASS = "Patito.123@456";
+	//private static final String PASS = "admin";
 	private static ContextJDBC jdbc = null;	
 	private Statement statement = null;
 
