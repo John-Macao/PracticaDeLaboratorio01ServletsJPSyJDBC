@@ -102,5 +102,20 @@ public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements 
 		
 	}
 
+	public List<Usuario> buscarSoloUsuario(int empresaId) {
+		List<Usuario> list = new ArrayList<Usuario>();
+		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_rol='u' AND usu_emp_id=" + empresaId);
+		try {
+			while (rs.next()) {
+				list.add(new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),
+						rs.getString("usu_usuario"), rs.getString("usu_contrasena"), rs.getString("usu_rol"), null));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
+		}
+		return list;
+	}
+
 
 }
