@@ -82,7 +82,8 @@ public class IniciarSesionController extends HttpServlet {
 				request.setAttribute("empresa", empresa);
 				
 				url = "/JSPs/perfilAdmin.jsp";
-			} else if (usuario.getRol() == "u") {
+				
+			} else if (usuario.getRol().equals("u")) {
 				System.out.println("entra al else");
 				request.setAttribute("usuario", usuario);	
 				url = "/JSPs/perfilUser.jsp";

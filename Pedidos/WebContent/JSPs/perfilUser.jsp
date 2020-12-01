@@ -18,26 +18,26 @@
 	
 	<h2> Main </h2>
 	
-	<form action="/Pedidos/JSPs/registrarCompra" method="post">
+	<form action="/Pedidos/RegistrarCompraController" method="post">
 		<input type="text" name="usuario_id" value="${usuN.id}" style="display:none">
 		<input type="submit" value="Registrar Compra">
 	</form>
 	
 	<form action="/Pedidos/ListarProductosController" method="post">
-		<input type="text" name="usuario" value="${usuN.id}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuN.id}" style="display:none">
 		<input type="text" name="page" value="m" style="display:none">
 		<input type="submit" value="Modificar Compra">
 	</form>
 	
 	<form action="/Pedidos/EliminarCompraController" method="post">
-		<input type="text" name="usuario" value="${usuN}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuN}" style="display:none">
 		<input type="text" name="page" value="b" style="display:none">
 		<input type="submit" value="Eliminar Compra">
 	</form>
 	
 	
 	<form action="/Pedidos/EliminarCompraController" method="post">
-		<input type="text" name="usuario" value="${usuN}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuN}" style="display:none">
 		<input type="text" name="page" value="b" style="display:none">
 		<input type="submit" value="Listar Compras">
 	</form>
