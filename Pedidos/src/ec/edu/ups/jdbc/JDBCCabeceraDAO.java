@@ -59,7 +59,7 @@ public class JDBCCabeceraDAO extends JDBCGenericDAO<Cabecera, Integer> implement
 	
 	public List<Cabecera> listarPorUsuario(int usuarioId) {
 		List<Cabecera> list = new ArrayList<Cabecera>();
-		ResultSet rs = sql.query("SELECT * FROM pedcabecera WHERE cab_usu_id=" + usuarioId);
+		ResultSet rs = sql.query("SELECT * FROM pedcabecera WHERE cab_usu_id=" + usuarioId + " AND cab_estado='e'");
 		try {
 			while (rs.next()) {
 				list.add(new Cabecera(rs.getInt("cab_id"), rs.getString("cab_estado"), null));

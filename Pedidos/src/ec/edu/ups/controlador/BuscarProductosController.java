@@ -63,30 +63,16 @@ public class BuscarProductosController extends HttpServlet {
 				usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 				empresa_id = Integer.valueOf(request.getParameter("empresa_id"));
 				
-				System.out.println("Usuario Id: " + usuario_id);
-				System.out.println("Empresa Id: " + empresa_id);
-				
 				productos = productoDao.buscarPorCateoria(Integer.valueOf(request.getParameter("categoria")), empresa_id);
 				request.setAttribute("productos", productos);
-				/*
-				request.setAttribute("empresa_id", empresa_id);
-				request.setAttribute("usuario_id", usuario_id);
-				*/
 				url = "/JSPs/buscar_producto.jsp";
 				
 			} else if(control.equals("b") && metodo.equals("nom")) {
 				usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 				empresa_id = Integer.valueOf(request.getParameter("empresa_id"));
 				
-				System.out.println("Usuario Id: " + usuario_id);
-				System.out.println("Empresa Id: " + empresa_id);
-				
 				producto = productoDao.buscarPorNombre(request.getParameter("nombre"), empresa_id);
 				request.setAttribute("producto", producto);
-				/*
-				request.setAttribute("empresa_id", empresa_id);
-				request.setAttribute("usuario_id", usuario_id);
-				*/
 				url = "/JSPs/buscar_producto.jsp";
 			}
 			

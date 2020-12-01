@@ -39,12 +39,13 @@
 		<input type="text" name="page" value="b" style="display:none">
 		<input type="submit" value="Buscar Productos">
 	</form>
-	<!--  
-	<a href="/Pedidos/JSPs/registrar_producto.jsp?emp=${empA.id}">Registrar Producto</a>
-	<a href="/Pedidos/ListarProductosController?page=m">Modificar Producto</a>
-	<a href="/Pedidos/BuscarProductosController">Buscar Producto</a>
-	<a href="/Pedidos/JSPs/listar_pedidos.jsp">Listar Pedidos</a>
-	<a href="/Pedidos/JSPs/administrar_pedidos.jsp">Administrar Pedidos</a>
-	-->
+	
+	<form action="/Pedidos/ListarUsuariosController" method="post">
+		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
+		
+		<input type="submit" value="Administrar Pedidos">
+	</form>
+	
 </body>
 </html>

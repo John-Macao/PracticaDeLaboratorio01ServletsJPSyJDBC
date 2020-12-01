@@ -20,7 +20,8 @@ import ec.edu.ups.modelo.Producto;
 public class ListarProductosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductoDAO productoDao;
-    private List<Producto> listaProductos; 
+    private List<Producto> listaProductos;
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,9 +40,10 @@ public class ListarProductosController extends HttpServlet {
 			
 			int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 			int empresa_id = Integer.valueOf(request.getParameter("empresa_id")); 
+
 			if(page.equals("m")) {
 				listaProductos = productoDao.find();
-				//System.out.println("Tamano de la lista recuperada: " + listaProductos.size());
+				
 				request.setAttribute("productos", listaProductos);
 				request.setAttribute("empresa_id", empresa_id);
 				request.setAttribute("usuario_id", usuario_id);

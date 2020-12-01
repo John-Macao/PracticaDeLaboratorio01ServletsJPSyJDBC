@@ -9,7 +9,6 @@ public class Cabecera {
 	private ArrayList<Detalle> detalles;
 	
 	public Cabecera() {
-		
 	}
 	
 	public Cabecera(int id, String estado, ArrayList<Detalle> detalles) {

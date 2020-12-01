@@ -14,19 +14,23 @@ import ec.edu.ups.dao.ProductoDAO;
 import ec.edu.ups.modelo.Producto;
 
 /**
- * Servlet implementation class ListarProductosController_S
+ * Servlet implementation class EliminarProductoController
  */
-@WebServlet("/ListarProductosController_S")
-public class ListarProductosController_S extends HttpServlet {
+@WebServlet("/EliminarProductoController")
+public class EliminarProductoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ProductoDAO productoDao;
-	private Producto producto;
-    private List<Producto> listaProductos; 
-       
+    private ProductoDAO productoDao;
+    private Producto producto;
+    private List<Producto> productos;
+     
+    private int producto_id;
+    private int usuario_id;
+    private int empresa_id;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListarProductosController_S() {
+    public EliminarProductoController() {
     	productoDao = DAOFactory.getFactory().getProductoDAO();
     	producto = new Producto();
     }
@@ -36,22 +40,24 @@ public class ListarProductosController_S extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = null;
-		System.out.println("Entra al Listado_S");
+		
 		try {
-			//String page = request.getParameter("page");
-			int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
-			int empresa_id = Integer.valueOf(request.getParameter("empresa_id")); 
+			usuario_id = Integer.valueOf(request.getParameter("usu_id"));
+			empresa_id = Integer.valueOf(request.getParameter("emp_id"));
+			producto_id = Integer.valueOf(request.getParameter("pro_id"));
 			
-			listaProductos = productoDao.find();
-			//System.out.println("Tamano de la lista recuperada: " + listaProductos.size());
-			request.setAttribute("productos", listaProductos);
-			request.setAttribute("producto", producto);
+			producto = productoDao.read(producto_id);
+			producto.setEstado("e");
+			productoDao.delete(producto);
+			productos = productoDao.find();
+			
+			request.setAttribute("productos", productos);
 			request.setAttribute("empresa_id", empresa_id);
 			request.setAttribute("usuario_id", usuario_id);
+
 			url = "/JSPs/modificar_producto.jsp";
-		
 		} catch (Exception e) {
-			System.out.println("Error Listar_S: " + e);
+			System.out.println("Error Eliminar: " + e);
 			url = "/JSPs/error.jsp";
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);

@@ -26,7 +26,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 
 	public Producto read(Integer id) {
 		Producto producto = null;
-		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_id=" + id);
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_id=" + id + "AND pro_estado != 'e'");
 		try {
 			if (rs != null && rs.next()) {
 				producto = new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
@@ -55,10 +55,10 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 	
 	public int categoriaId(int id) {
 		int catId = 0;
-		ResultSet rs = sql.query("SELECT pro_emp_id FROM producto WHERE pro_id=" + id);
+		ResultSet rs = sql.query("SELECT pro_cat_id FROM producto WHERE pro_id=" + id);
 		try {
 			if (rs != null && rs.next()) {
-				catId = rs.getInt("pro_emp_id");
+				catId = rs.getInt("pro_cat_id");
 			}
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
@@ -78,7 +78,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 
 	public List<Producto> find() {
 		List<Producto> list = new ArrayList<Producto>();
-		ResultSet rs = sql.query("SELECT * FROM producto");
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_estado != 'e'");
 		try {
 			while (rs.next()) {
 				list.add(new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
@@ -108,7 +108,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 
 	public List<Producto> buscarPorCateoria(int catId, int empId) {
 		List<Producto> list = new ArrayList<Producto>();
-		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_cat_id=" + catId + " AND pro_emp_id=" + empId);
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_cat_id=" + catId + " AND pro_emp_id=" + empId + "AND pro_estado != 'e'");
 		try {
 			while (rs.next()) {
 				list.add(new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
@@ -123,7 +123,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 	
 	public Producto buscarPorNombre(String nombre, int empId) {
 		Producto producto = null;
-		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_nombre='" + nombre + "' AND pro_emp_id=" + empId);
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_nombre='" + nombre + "' AND pro_emp_id=" + empId + "AND pro_estado != 'e'");
 		try {
 			if (rs != null && rs.next()) {
 				producto = new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.dao.EmpresaDAO;
@@ -43,15 +44,18 @@ public class IniciarSesionController extends HttpServlet {
 			usuario = usuarioDao.login(user, contra);
 
 			if (usuario.getRol().equals("a")) {
-				//System.out.println("entra al if");
 				empresa_id = usuarioDao.empresaId(usuario.getId());
 				empresa = empresaDao.read(empresa_id);
+				
+				HttpSession session = request.getSession(true);
+				session.setAttribute("accesos", 1);
 				request.setAttribute("usuario", usuario);
 				request.setAttribute("empresa", empresa);
 				
 				url = "/JSPs/perfilAdmin.jsp";
 			} else if (usuario.getRol() == "u") {
-				//System.out.println("entra al else");
+				HttpSession session = request.getSession(true);
+				session.setAttribute("accesos", 1);
 				request.setAttribute("usuario", usuario);	
 				url = "/JSPs/perfilUser.jsp";
 			}

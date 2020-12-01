@@ -1,6 +1,13 @@
+<%@page import="ec.edu.ups.dao.DAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="ec.edu.ups.modelo.Producto"%>
+<%@page import="ec.edu.ups.modelo.Categoria"%>
+<%@page import="ec.edu.ups.dao.ProductoDAO"%>
+<%@page import="ec.edu.ups.dao.CategoriaDAO"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +16,16 @@
 	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
 </head>
 <body>
-	<c:set var="lista" scope="request" value="${productos}"/>
+	
 	<c:set var="proInf" scope="request" value="${producto}"/>
-	<c:set var="emp" scope="request" value="${empresa_id}"/>
-	<c:set var="usu" scope="request" value="${usuario_id}"/>
+	
+	<% 
+		int emp = (Integer) request.getAttribute("empresa_id");
+		int usu = (Integer) request.getAttribute("usuario_id");
+	%>
 
+	<% PrintWriter out2= response.getWriter(); %>
+	
 	<header>
         <img src="logo_ups.png" alt="Logo" width="700" height="100"/>
         <h2>Menu de Inicio</h2>
@@ -39,23 +51,42 @@
 			<td><strong>Categoria</strong></td>
 			<td><strong>Modificar</strong></td>
 		</tr>
-		<c:forEach var="pro" items="${lista}">
-			<tr>
-				<td>${pro.nombre}</td>
-				<td>${pro.cantidad}</td>
-				<td>${pro.categoria}</td>
-				<td>
-					<form action="/Pedidos/BuscarProductosController" method="post">
-						<input type="text" value="m" name="page" style="display:none">
-						<input type="text" value="ide" name="bus" style="display:none">
-						<input type="text" value="${pro.id}" name="pro_id" style="display:none"> 
-						<input type="text" name="emp_id" value="${emp}" style="display:none">
-						<input type="text" name="usu_id" value="${usu}" style="display:none">
-						<input type="submit" value="Modificar">
-					</form> 
-				</td>
-			</tr>
-		</c:forEach>
+		<% 
+			List<Producto> lista_P = (List<Producto>) request.getAttribute("productos");
+			ProductoDAO productoDao = DAOFactory.getFactory().getProductoDAO();
+			CategoriaDAO categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
+			
+			Producto prod = new Producto();
+			Categoria cate = new Categoria();
+			
+			int categoria_id;
+		%>
+		
+		<% 
+			for(int i = 0; i < lista_P.size(); i++) {
+				prod = lista_P.get(i);
+				categoria_id = productoDao.categoriaId(prod.getId());
+				
+				cate = categoriaDao.read(categoria_id);
+				
+				out.println("<tr><td>" + prod.getNombre() + "<td>");
+				out.println("<td>" + prod.getCantidad() + "<td>");
+				out.println("<td>" + cate.getNombre() + "<td>");
+				out.println("<td><form action='/Pedidos/BuscarProductosController' method='post'>" +
+						"<input type='text' value='m' name='page' style='display:none'>" + 
+						"<input type='text' value='ide' name='bus' style='display:none'>" + 
+						"<input type='text' value='" + prod.getId() + "' name='pro_id' style='display:none'>" + 
+						"<input type='text' name='emp_id' value='" + emp  + "' style='display:none'>" +
+						"<input type='text' name='usu_id' value='" + usu +"' style='display:none'>" +
+						"<input type='submit' value='Modificar'></form> </td>");
+				out.println("<td><form action='/Pedidos/EliminarProductoController' method='post'>" +
+						"<input type='text' value='" + prod.getId() + "' name='pro_id' style='display:none'>" + 
+						"<input type='text' name='emp_id' value='" + emp  + "' style='display:none'>" +
+						"<input type='text' name='usu_id' value='" + usu +"' style='display:none'>" +
+						"<input type='submit' value='Eliminar'></form> </td></tr>");
+			}		
+			
+		%>
 		</table>
 		
 		<form action="/Pedidos/ModificarProductosController" method="post">
@@ -72,8 +103,8 @@
                 <option value="3">Moda</option>
             </select>
 
-			<input type="text" name="emp_id" value="${emp}" style="display:none">
-			<input type="text" name="usu_id" value="${usu}" style="display:none">
+			<input type="text" name="emp_id" value=<%= emp %> style="display:none">
+			<input type="text" name="usu_id" value=<%= usu %> style="display:none">
 			<input type="text" value="${proInf.id}" name="producto_id" style="display:none">
 			
     	<input type="submit" value="Modificar Producto">
@@ -83,8 +114,8 @@
     <br>
     
     <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
-    	<input type="text" name="emp_id" value="${emp}" style="display:none">
-		<input type="text" name="usu_id" value="${usu}" style="display:none">
+    	<input type="text" name="emp_id" value=<%= emp %> style="display:none">
+		<input type="text" name="usu_id" value=<%= usu %> style="display:none">
 		<input type="submit" value="Regresar a Inicio">
     </form>
 </body>
