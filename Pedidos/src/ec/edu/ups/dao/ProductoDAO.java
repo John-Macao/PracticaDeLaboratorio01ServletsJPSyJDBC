@@ -12,6 +12,6 @@ public interface ProductoDAO extends GenericDAO<Producto, Integer> {
 	public abstract List<Producto> find(int empId);
 	public List<Producto> buscarPorCateoria(int catId, int empId);
 	public Producto buscarPorNombre(String nombre, int empId);
-	public Producto buscarSoloPorNombre(String nombre, int empId);
+	public Producto buscarSoloPorNombre(String nombre);
 	
 }

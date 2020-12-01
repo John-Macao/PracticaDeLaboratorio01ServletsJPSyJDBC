@@ -137,7 +137,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 	}
 
 	@Override
-	public Producto buscarSoloPorNombre(String nombre, int empId) {
+	public Producto buscarSoloPorNombre(String nombre) {
 		Producto producto = null;
 		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_nombre='" + nombre + "'");
 		try {
