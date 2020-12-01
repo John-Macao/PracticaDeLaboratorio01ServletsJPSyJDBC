@@ -135,5 +135,21 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 
 		return producto;
 	}
+
+	@Override
+	public Producto buscarSoloPorNombre(String nombre, int empId) {
+		Producto producto = null;
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_nombre='" + nombre + "'");
+		try {
+			if (rs != null && rs.next()) {
+				producto = new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
+						rs.getString("pro_estado"), null);
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+
+		return producto;
+	}
 	
 }
