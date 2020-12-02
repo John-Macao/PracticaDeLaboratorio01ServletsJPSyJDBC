@@ -25,9 +25,10 @@ public class TEST extends HttpServlet {
 	private ProductoDAO productoDao;
     private List<Producto> listaProductos;
     
+    private Producto producto;
+    
     private DetalleDAO detalleDao;
     private Detalle detalle;
-    
     
     int cont=0;
     
@@ -37,24 +38,30 @@ public class TEST extends HttpServlet {
     	detalleDao = DAOFactory.getFactory().getDetalleDAO();
     	detalle = new Detalle();
     	
+    	producto = new Producto();
     }
 	
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		
 		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 		
-		//int cabecera_id = Integer.valueOf(request.getParameter("cabecera_id"));
+		
+		String cabecera_id = request.getParameter("ver_id");
+		
 		
 		String p = request.getParameter("item");
 		String c = request.getParameter("cantidad");
-		System.out.println("VALOR DEL CANTIDAD FUERA DEL IF   :   " + c);
+		System.out.println("OBTENGO CABECERA   :   " + cabecera_id);
+		System.out.println("OBTENGO USUARIO_ID   :   " + usuario_id);
+		
+		System.out.println("TEXTO   :   " + p);
 		
 		
 		if (c.equals("")) {
+			System.out.println("---------------------------");
 			System.out.println("VALOR DE CANTIDAD :  " + c);
+			System.out.println("---------------------------");
 			listaProductos = productoDao.find();
 			request.setAttribute("listaProductos", listaProductos);
 			request.setAttribute("usuario_id", usuario_id);
@@ -62,16 +69,22 @@ public class TEST extends HttpServlet {
 			
 		}else {
 			
+			int cc = Integer.parseInt(c);
+			int ver_id = Integer.parseInt(cabecera_id);
 			cont=cont+1;
 			
 			System.out.println("-------------------------------------------------");
 			System.out.println("ver id de user:  " + usuario_id);
-			
+			System.out.println("ver id de cabecera:  " + ver_id);
 				listaProductos = productoDao.find();
 				
 				System.out.println("Tamaño de la lista recuperada: " + listaProductos.size());
 				System.out.println("VER posicion del  PRODUCTO: " + p);
 				System.out.println("VER cantidad de Producto: " + c);
+				
+				producto = productoDao.buscarSoloPorNombre(p);
+				detalle.setCantidad(cc);
+				detalleDao.crear(detalle, ver_id, producto.getId());
 				
 				request.setAttribute("listaProductos", listaProductos);
 				request.setAttribute("usuario_id", usuario_id);

@@ -76,7 +76,7 @@ public class JDBCCabeceraDAO extends JDBCGenericDAO<Cabecera, Integer> implement
 		ResultSet rs = sql.query("SELECT max(cab_id) FROM pedcabecera");
 		try {
 			if (rs != null && rs.next()) {
-				cabeceraId = rs.getInt("cab_id");
+				cabeceraId = rs.getInt("max(cab_id)");
 			}
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());

@@ -9,9 +9,17 @@
 </head>
 <body>
 
+<script type="text/javascript" src="/Pedidos/funciones.js"></script>
+<script type="text/javascript">
+       var tID = '${otherVars}';
+</script>
+
 	<% 
-		String usu_id = request.getParameter("usuario_id");
-		String cab_id = request.getParameter("cabecera_id");
+	String cab_id = request.getParameter("cabecera_id");	
+	String usu_id = request.getParameter("usuario_id");
+		
+		out.print(String.format("<p> VER CABECERA ID : <strong>%s</strong></p>", cab_id));
+		out.print(String.format("<p> VER CABECERA ID : <strong>%s</strong></p>", usu_id));
 	
 	%>
 
@@ -30,21 +38,20 @@
             
 				<select name="item">
 					<c:forEach items="${listadoP}" var="id">
-       				<option value="${id.nombre}">${id.nombre}</option>
+       				<option>${id.nombre}</option>
 					</c:forEach>
 				</select>
 				
 				<label for="nombre">Cantidad: </label>
             	<input type="text" name="cantidad">
             	
-            	
-            	
 				<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
-            	<input type="text" value=<%= cab_id %>  name="cabecera_id" style="display:none">
+            	<input type="text" value=<%= cab_id %>  name="ver_id" style="display:none">
             
             <input type="submit" value="Registrar Producto">
         </form>
     </div>
+    
     
     <%
        String number1 = (String) request.getAttribute("number1");
@@ -55,7 +62,8 @@
     	   
        }
 %>
-	
+
+
 </body>
 </html>
 

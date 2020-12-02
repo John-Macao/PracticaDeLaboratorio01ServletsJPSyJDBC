@@ -41,14 +41,25 @@ public class RegistrarCompraController extends HttpServlet {
 		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 		
 		System.out.println("ver id de user:  " + usuario_id);
-		cont=cont+1;
 		
-		/*
+		
+		int ultimo_id = cabeceraDao.ultimoCreado();
+		
+		System.out.println("ULTIMO CREADO : " + ultimo_id);
+		
+		
+		if (ultimo_id == 0) {
+			System.out.println("VERIFICAR EL IF ");
+		}else {
+			cont=ultimo_id+1;
 		cabecera.setId(cont);
 		cabecera.setEstado("E");
 		cabeceraDao.crear(cabecera, usuario_id);
 		System.out.println("CABECERA CREADA ");
-		*/
+		System.out.println("id cab : " + cabecera.getId());
+		
+			
+		}
 		
 		
 		try {
@@ -58,8 +69,8 @@ public class RegistrarCompraController extends HttpServlet {
 			
 			request.setAttribute("listaProductos", listaProductos);
 			request.setAttribute("usuario_id", usuario_id);
-			//request.setAttribute("cabecera_id", cabecera.getId());
-			
+			request.setAttribute("cabecera_id", cabecera.getId());
+			System.out.println("FINALIZA PRIMER SERBVLET");
 			url = "/JSPs/registrar_Compra.jsp";
 			
 			
