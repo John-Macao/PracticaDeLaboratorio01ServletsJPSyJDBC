@@ -29,6 +29,7 @@ public class ListarCabecerasController extends HttpServlet {
 	private int usuario_id;
 	private int usuarioS_id;
 	private int empresa_id;
+	private String pagina;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,16 +49,33 @@ public class ListarCabecerasController extends HttpServlet {
 			usuarioS_id = Integer.valueOf(request.getParameter("usuarioS_id"));
 			usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 			empresa_id = Integer.valueOf(request.getParameter("empresa_id"));
-			cabeceras = cabeceraDao.listarPorUsuario(usuarioS_id);
 			usuarios = usuarioDao.buscarSoloUsuario(empresa_id);
 			
-			request.setAttribute("cabeceras", cabeceras);
-			request.setAttribute("usuarios", usuarios);
-			request.setAttribute("usuario_id", usuario_id);
-			request.setAttribute("usuarioS_id", usuarioS_id);
-			request.setAttribute("empresa_id", empresa_id);
+			pagina = String.valueOf(request.getParameter("page"));
 			
-			url = "/JSPs/administrar_pedidos.jsp";
+			if(pagina.equals("cp")) {
+				cabeceras = cabeceraDao.listarPorUsuario(usuarioS_id);
+				
+				request.setAttribute("usuarios", usuarios);
+				request.setAttribute("usuario_id", usuario_id);
+				request.setAttribute("usuarioS_id", usuarioS_id);
+				request.setAttribute("empresa_id", empresa_id);
+				request.setAttribute("cabeceras", cabeceras);
+				
+				url = "/JSPs/administrar_pedidos.jsp";
+				
+			} else if(pagina.equals("lp")) {
+				cabeceras = cabeceraDao.listarRevisadas(usuarioS_id);
+				
+				request.setAttribute("usuarios", usuarios);
+				request.setAttribute("usuario_id", usuario_id);
+				request.setAttribute("usuarioS_id", usuarioS_id);
+				request.setAttribute("empresa_id", empresa_id);
+				request.setAttribute("cabeceras", cabeceras);
+				
+				url = "/JSPs/listar_pedidos.jsp";
+			}
+			
 		} catch(Exception e) {
 			System.out.println("Error Pedidos Cab.: " + e);
 			url = "/JSPs/error.jsp";

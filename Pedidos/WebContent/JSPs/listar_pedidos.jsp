@@ -42,26 +42,27 @@
     	<h1>Usuarios</h1>
     	
     	<table id="tabla_users">
-		<tr>
-			<td><strong>Nombre</strong></td>
-			<td><strong>Apellido</strong></td>
-			<td><strong>Pedidos</strong></td>
-		</tr>
-		
-		<c:forEach var="us" items="${lista_U}">
 			<tr>
-				<td>${us.nombre}</td>
-				<td>${us.apellido}</td>
-				<td>
-					<form action="/Pedidos/ListarCabecerasController" method="post">
-						<input type="text" value="${us.id}" name="usuarioS_id" style="display:none">
-						<input type="text" value="${usu}" name="usuario_id" style="display:none"> 
-						<input type="text" value="${emp}" name="empresa_id" style="display:none">
-						<input type="submit" value="Listar">
-					</form> 
-				</td>
+				<td><strong>Nombre</strong></td>
+				<td><strong>Apellido</strong></td>
+				<td><strong>Pedidos</strong></td>
 			</tr>
-		</c:forEach>
+			
+			<c:forEach var="us" items="${lista_U}">
+				<tr>
+					<td>${us.nombre}</td>
+					<td>${us.apellido}</td>
+					<td>
+						<form action="/Pedidos/ListarCabecerasController" method="post">
+							<input type="text" value="${us.id}" name="usuarioS_id" style="display:none">
+							<input type="text" value="lp" name="page" style="display:none">
+							<input type="text" value="${usu}" name="usuario_id" style="display:none"> 
+							<input type="text" value="${emp}" name="empresa_id" style="display:none">
+							<input type="submit" value="Listar">
+						</form> 
+					</td>
+				</tr>
+			</c:forEach>
 		</table>
     </div>
     
@@ -69,27 +70,27 @@
     	<h1>Pedidos</h1>
     	
     	<table id="tabla_cabeceras">
-		<tr>
-			<td><strong>Numero</strong></td>
-			<td><strong>Estado</strong></td>
-			<td><strong>Detalle</strong></td>
-		</tr>
-		
-		<c:forEach var="cab" items="${lista_C}">
 			<tr>
-				<td>${cab.id}</td>
-				<td>${cab.estado}</td>
-				<td>
-					<form action="/Pedidos/ListarDetallesController" method="post">
-						<input type="text" value="${cab.id}" name="cab_id" style="display:none"> 
-						<input type="text" name="usuarioS_id" value="${usuS}" style="display:none">
-						<input type="text" name="usuario_id" value="${usu}" style="display:none">
-						<input type="text" name="empresa_id" value="${emp}" style="display:none">
-						<input type="submit" value="Ver Detalle">
-					</form> 
-				</td>
+				<td><strong>Numero</strong></td>
+				<td><strong>Estado</strong></td>
+				<td><strong>Detalle</strong></td>
 			</tr>
-		</c:forEach>
+			
+			<c:forEach var="cab" items="${lista_C}">
+				<tr>
+					<td>${cab.id}</td>
+					<td>${cab.estado}</td>
+					<td>
+						<form action="/Pedidos/ListarDetallesController" method="post">
+							<input type="text" value="${cab.id}" name="cab_id" style="display:none"> 
+							<input type="text" name="usuarioS_id" value="${usuS}" style="display:none">
+							<input type="text" name="usuario_id" value="${usu}" style="display:none">
+							<input type="text" name="empresa_id" value="${emp}" style="display:none">
+							<input type="submit" value="Ver Detalle">
+						</form> 
+					</td>
+				</tr>
+			</c:forEach>
 		</table>
     </div>
     

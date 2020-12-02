@@ -57,6 +57,7 @@
 				<td>
 					<form action="/Pedidos/ListarCabecerasController" method="post">
 						<input type="text" value="${us.id}" name="usuarioS_id" style="display:none">
+						<input type="text" value="cp" name="page" style="display:none">
 						<input type="text" value="${usu}" name="usuario_id" style="display:none"> 
 						<input type="text" value="${emp}" name="empresa_id" style="display:none">
 						<input type="submit" value="Listar">
