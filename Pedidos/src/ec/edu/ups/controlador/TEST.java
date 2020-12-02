@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ec.edu.ups.dao.CabeceraDAO;
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.dao.DetalleDAO;
 import ec.edu.ups.dao.ProductoDAO;
+import ec.edu.ups.modelo.Cabecera;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Producto;
 
@@ -30,7 +32,11 @@ public class TEST extends HttpServlet {
     private DetalleDAO detalleDao;
     private Detalle detalle;
     
+    private CabeceraDAO cabeceraDao;
+    private Cabecera cabecera;
+    
     int cont=0;
+    int cont2=0;
     
     public TEST() {
     	productoDao = DAOFactory.getFactory().getProductoDAO();
@@ -39,15 +45,16 @@ public class TEST extends HttpServlet {
     	detalle = new Detalle();
     	
     	producto = new Producto();
+    	cabeceraDao = DAOFactory.getFactory().getCabeceraDAO();
+    	cabecera = new Cabecera();
     }
 	
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
+		int cabecera_id = Integer.valueOf(request.getParameter("ver_id"));
 		
-		
-		String cabecera_id = request.getParameter("ver_id");
 		
 		
 		String p = request.getParameter("item");
@@ -56,7 +63,7 @@ public class TEST extends HttpServlet {
 		System.out.println("OBTENGO USUARIO_ID   :   " + usuario_id);
 		
 		System.out.println("TEXTO   :   " + p);
-		
+		int ultimo_id = cabeceraDao.ultimoCreado();
 		
 		if (c.equals("")) {
 			System.out.println("---------------------------");
@@ -68,14 +75,12 @@ public class TEST extends HttpServlet {
 			
 			
 		}else {
-			
 			int cc = Integer.parseInt(c);
-			int ver_id = Integer.parseInt(cabecera_id);
 			cont=cont+1;
 			
 			System.out.println("-------------------------------------------------");
 			System.out.println("ver id de user:  " + usuario_id);
-			System.out.println("ver id de cabecera:  " + ver_id);
+			System.out.println("ver id de cabecera:  " + cabecera_id);
 				listaProductos = productoDao.find();
 				
 				System.out.println("Tamaño de la lista recuperada: " + listaProductos.size());
@@ -83,14 +88,19 @@ public class TEST extends HttpServlet {
 				System.out.println("VER cantidad de Producto: " + c);
 				
 				producto = productoDao.buscarSoloPorNombre(p);
+				System.out.println("ID DEL PRODUCTOOOO : " + producto.getId());
+				
 				detalle.setCantidad(cc);
-				detalleDao.crear(detalle, ver_id, producto.getId());
+				detalleDao.crear(detalle, cabecera_id, producto.getId());
 				
 				request.setAttribute("listaProductos", listaProductos);
-				request.setAttribute("usuario_id", usuario_id);
 				request.setAttribute("number1", Integer.toString(cont));
+				
+				
 			
 		}
+		request.setAttribute("usuario_id", usuario_id);
+		request.setAttribute("cabecera_id", ultimo_id);
 		
 		this.getServletContext().getRequestDispatcher("/JSPs/registrar_Compra.jsp").forward(request, response);
 		

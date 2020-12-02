@@ -23,21 +23,20 @@
 		<input type="submit" value="Registrar Compra">
 	</form>
 	
-	<form action="/Pedidos/ListarProductosController" method="post">
+	<form action="/Pedidos/ModificarCompraController" method="post">
 		<input type="text" name="usuario_id" value="${usuN.id}" style="display:none">
-		<input type="text" name="page" value="m" style="display:none">
 		<input type="submit" value="Modificar Compra">
 	</form>
 	
 	<form action="/Pedidos/EliminarCompraController" method="post">
-		<input type="text" name="usuario_id" value="${usuN}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuN.id}" style="display:none">
 		<input type="text" name="page" value="b" style="display:none">
 		<input type="submit" value="Eliminar Compra">
 	</form>
 	
 	
-	<form action="/Pedidos/EliminarCompraController" method="post">
-		<input type="text" name="usuario_id" value="${usuN}" style="display:none">
+	<form action="/Pedidos/Elim" method="post">
+		<input type="text" name="usuario_id" value="${usuN.id}" style="display:none">
 		<input type="text" name="page" value="b" style="display:none">
 		<input type="submit" value="Listar Compras">
 	</form>

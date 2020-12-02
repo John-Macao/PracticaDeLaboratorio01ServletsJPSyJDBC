@@ -14,5 +14,7 @@ public interface CabeceraDAO extends GenericDAO<Cabecera, Integer> {
 	public abstract List<Cabecera> listarPorUsuario(int usuarioId);
 	public abstract int ultimoCreado();
 	public abstract List<Cabecera> listarRevisadas(int usuarioId);
+	public abstract List<Cabecera> listarAprobadas(int usuarioId);
+	public abstract List<Cabecera> listarRechazadas(int usuarioId);
 	
 }

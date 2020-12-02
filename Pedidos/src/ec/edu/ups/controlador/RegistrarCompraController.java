@@ -51,16 +51,15 @@ public class RegistrarCompraController extends HttpServlet {
 		if (ultimo_id == 0) {
 			System.out.println("VERIFICAR EL IF ");
 		}else {
-			cont=ultimo_id+1;
+		cont=ultimo_id+1;
 		cabecera.setId(cont);
-		cabecera.setEstado("E");
+		cabecera.setEstado("e");
 		cabeceraDao.crear(cabecera, usuario_id);
 		System.out.println("CABECERA CREADA ");
 		System.out.println("id cab : " + cabecera.getId());
 		
 			
 		}
-		
 		
 		try {
 			
