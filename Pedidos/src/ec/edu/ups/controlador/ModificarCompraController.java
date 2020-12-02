@@ -12,27 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import ec.edu.ups.dao.CabeceraDAO;
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.modelo.Cabecera;
+import ec.edu.ups.modelo.Producto;
 
 /**
- * Servlet implementation class EliminarCompraController
+ * Servlet implementation class ModificarCompraController
  */
-@WebServlet("/EliminarCompraController")
-public class EliminarCompraController extends HttpServlet {
+@WebServlet("/ModificarCompraController")
+public class ModificarCompraController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
 	private CabeceraDAO cabeceraDao;
 	private List<Cabecera> listaCabecera; 
 	
-	
-	
-    public EliminarCompraController() {
+    public ModificarCompraController() {
     	cabeceraDao = DAOFactory.getFactory().getCabeceraDAO();
     	
     }
-    
+
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 		
 		System.out.println("VER ID USUARIO CORRECTO ------- : " + usuario_id);
@@ -41,9 +38,7 @@ public class EliminarCompraController extends HttpServlet {
 		request.setAttribute("listaCabecera", listaCabecera);
 		request.setAttribute("usuario_id", usuario_id);
 		
-		getServletContext().getRequestDispatcher("/JSPs/eliminar_Compra.jsp").forward(request, response);
-		
-		
+		getServletContext().getRequestDispatcher("/JSPs/modificar_Compra.jsp").forward(request, response);
 	}
 
 }

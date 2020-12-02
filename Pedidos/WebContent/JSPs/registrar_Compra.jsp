@@ -9,22 +9,17 @@
 </head>
 <body>
 
-<script type="text/javascript" src="/Pedidos/funciones.js"></script>
-<script type="text/javascript">
-       var tID = '${otherVars}';
-</script>
 
 	<% 
-	String cab_id = request.getParameter("cabecera_id");	
-	String usu_id = request.getParameter("usuario_id");
+		String usu_id = request.getParameter("usuario_id");
 		
-		out.print(String.format("<p> VER CABECERA ID : <strong>%s</strong></p>", cab_id));
-		out.print(String.format("<p> VER CABECERA ID : <strong>%s</strong></p>", usu_id));
+		out.print(String.format("<p> VER USUARIO ID : <strong>%s</strong></p>", usu_id));
 	
 	%>
 
 <div> llega JSP correcto</div>
 	<c:set var="listadoP" scope="request" value="${listaProductos}" />
+	<c:set var="aa" scope="request" value="${cabecera_id}" />
 	
 	<h1>Registro </h1>
 	
@@ -46,7 +41,7 @@
             	<input type="text" name="cantidad">
             	
 				<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
-            	<input type="text" value=<%= cab_id %>  name="ver_id" style="display:none">
+            	<input type="text" value="${aa}"  name="ver_id" style="display:none">
             
             <input type="submit" value="Registrar Producto">
         </form>
@@ -63,6 +58,10 @@
        }
 %>
 
+    <form action="/Pedidos/BuscarUsuario" method="post">
+    	<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
+		<input type="submit" value="Finalizar Compra">
+    </form>
 
 </body>
 </html>

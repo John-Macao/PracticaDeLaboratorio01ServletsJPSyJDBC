@@ -100,5 +100,40 @@ public class JDBCCabeceraDAO extends JDBCGenericDAO<Cabecera, Integer> implement
 		return list;
 	}
 	
+	
+	
+	
+	
+	
+	
+	public List<Cabecera> listarAprobadas(int usuarioId) {
+		List<Cabecera> list = new ArrayList<Cabecera>();
+		ResultSet rs = sql.query("SELECT * FROM pedcabecera WHERE cab_usu_id=" + usuarioId + " AND cab_estado='A'");
+		try {
+			while (rs.next()) {
+				list.add(new Cabecera(rs.getInt("cab_id"), rs.getString("cab_estado"), null));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
+		}
+		return list;
+	}
+	
+	
+	public List<Cabecera> listarRechazadas(int usuarioId) {
+		List<Cabecera> list = new ArrayList<Cabecera>();
+		ResultSet rs = sql.query("SELECT * FROM pedcabecera WHERE cab_usu_id=" + usuarioId + " AND cab_estado='R'");
+		try {
+			while (rs.next()) {
+				list.add(new Cabecera(rs.getInt("cab_id"), rs.getString("cab_estado"), null));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
+		}
+		return list;
+	}
+	
 
 }

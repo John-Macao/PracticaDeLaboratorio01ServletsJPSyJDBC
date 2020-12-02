@@ -23,7 +23,7 @@ public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements 
 		*/
 		
 		sql.update("INSERT peddetalle VALUES (0, '" + detalle.getCantidad() + "', "
-				+ cabeceraId + productoId + ")");
+				+ cabeceraId +","+ productoId + ")");
 		
 	}
 
@@ -41,11 +41,16 @@ public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements 
 		return detalle;
 	}
 
+	
+	
+	
 	public void update(Detalle detalle) {
-		sql.update("UPDATE peddetalle SET ped_cantidad = " + detalle.getCantidad() + ", det_pro_id = '" + detalle.getProducto().getId()
-		+ "' WHERE det_id = " + detalle.getId());
+		sql.update("UPDATE peddetalle SET det_cantidad = '" + detalle.getCantidad() + "' WHERE det_id = " + detalle.getId());
 		
 	}
+	
+	
+	
 
 	public void delete(Detalle detalle) {
 		sql.update("DELETE FROM peddetalle WHERE det_id = " + detalle.getId());
