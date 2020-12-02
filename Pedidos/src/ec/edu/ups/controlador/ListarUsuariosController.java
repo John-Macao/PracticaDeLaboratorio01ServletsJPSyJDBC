@@ -24,6 +24,7 @@ public class ListarUsuariosController extends HttpServlet {
 	
 	private int empresa_id;
 	private int usuario_id;
+	private String pagina;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -41,13 +42,21 @@ public class ListarUsuariosController extends HttpServlet {
 		try {
 			empresa_id = Integer.valueOf(request.getParameter("empresa_id"));
 			usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
+			pagina = String.valueOf(request.getParameter("page"));
+			
 			usuarios = usuarioDao.buscarSoloUsuario(empresa_id);
 			
 			request.setAttribute("usuarios", usuarios);
 			request.setAttribute("usuario_id", usuario_id);
 			request.setAttribute("empresa_id", empresa_id);
 			
-			url = "/JSPs/administrar_pedidos.jsp";
+			if(pagina.equals("cp")) {
+				url = "/JSPs/administrar_pedidos.jsp";
+				
+			} else if(pagina.equals("lp")) {
+				url = "/JSPs/listar_pedidos.jsp";
+			}
+			
 		} catch(Exception e) {
 			System.out.println("Error Pedidos Cab.: " + e);
 			url = "/JSPs/error.jsp";

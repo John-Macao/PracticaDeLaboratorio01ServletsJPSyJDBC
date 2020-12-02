@@ -23,6 +23,7 @@
 	<form action="/Pedidos/JSPs/registrar_producto.jsp" method="post">
 		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
 		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
+		
 		<input type="submit" value="Registrar Productos">
 	</form>
 	
@@ -30,6 +31,7 @@
 		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
 		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
 		<input type="text" name="page" value="m" style="display:none">
+		
 		<input type="submit" value="Modificar Productos">
 	</form>
 	
@@ -37,14 +39,28 @@
 		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
 		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
 		<input type="text" name="page" value="b" style="display:none">
+		
 		<input type="submit" value="Buscar Productos">
 	</form>
 	
 	<form action="/Pedidos/ListarUsuariosController" method="post">
 		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
 		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
+		<input type="text" name="page" value="cp" style="display:none">
 		
 		<input type="submit" value="Administrar Pedidos">
+	</form>
+	
+	<form action="/Pedidos/ListarUsuariosController" method="post">
+		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
+		<input type="text" name="usuario_id" value="${usuA.id}" style="display:none">
+		<input type="text" name="page" value="lp" style="display:none">
+		
+		<input type="submit" value="Listar Pedidos">
+	</form>
+	
+	<form action="/Pedidos/CerrarSesion" method="post"> 
+		<input type="submit" value="Cerrar Sesion">
 	</form>
 	
 </body>

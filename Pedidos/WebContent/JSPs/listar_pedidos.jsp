@@ -13,19 +13,16 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Controlar Pedidos</title>
+	<title>Listar Pedidos</title>
 	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
 </head>
 <body>
-
 	<c:set var="lista_U" scope="request" value="${usuarios}"/>
 	<c:set var="lista_C" scope="request" value="${cabeceras}"/>
 	<c:set var="usu" scope="request" value="${usuario_id}"/>
-	<c:set var="usuS" scope="request" value="${usuarioS_id}"/>
 	<c:set var="emp" scope="request" value="${empresa_id}"/>
+	<c:set var="usuS" scope="request" value="${usuarioS_id}"/>
 
-	<% PrintWriter out2= response.getWriter(); %>
-	
 	<header>
         <img src="logo_ups.png" alt="Logo" width="700" height="100"/>
         <h2>Menu de Inicio</h2>
@@ -50,6 +47,7 @@
 			<td><strong>Apellido</strong></td>
 			<td><strong>Pedidos</strong></td>
 		</tr>
+		
 		<c:forEach var="us" items="${lista_U}">
 			<tr>
 				<td>${us.nombre}</td>
@@ -75,9 +73,8 @@
 			<td><strong>Numero</strong></td>
 			<td><strong>Estado</strong></td>
 			<td><strong>Detalle</strong></td>
-			<td><strong>Aceptar</strong></td>
-			<td><strong>Denegar</strong></td>
 		</tr>
+		
 		<c:forEach var="cab" items="${lista_C}">
 			<tr>
 				<td>${cab.id}</td>
@@ -89,26 +86,6 @@
 						<input type="text" name="usuario_id" value="${usu}" style="display:none">
 						<input type="text" name="empresa_id" value="${emp}" style="display:none">
 						<input type="submit" value="Ver Detalle">
-					</form> 
-				</td>
-				<td>
-					<form action="/Pedidos/ControlarPedidosController" method="post">
-						<input type="text" value="${cab.id}" name="cab_id" style="display:none"> 
-						<input type="text" name="usuarioS_id" value="${usuS}" style="display:none">
-						<input type="text" value="aceptado" name="estado" style="display:none"> 
-						<input type="text" name="usuario_id" value="${usu}" style="display:none">
-						<input type="text" name="empresa_id" value="${emp}" style="display:none">
-						<input type="submit" value="Aceptar">
-					</form> 
-				</td>
-				<td>
-					<form action="/Pedidos/ControlarPedidosController" method="post">
-						<input type="text" value="${cab.id}" name="cab_id" style="display:none"> 
-						<input type="text" name="usuarioS_id" value="${usuS}" style="display:none">
-						<input type="text" value="negado" name="estado" style="display:none">
-						<input type="text" name="usuario_id" value="${usu}" style="display:none">
-						<input type="text" name="empresa_id" value="${emp}" style="display:none">
-						<input type="submit" value="Denegar">
 					</form> 
 				</td>
 			</tr>

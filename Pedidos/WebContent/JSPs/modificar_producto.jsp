@@ -41,7 +41,7 @@
 
     <div class="jump"></div>
 
-    <div id=opcion2>
+    <div id="lista_Productos">
         <h1>Modificar Productos</h1>
         
         <table>
@@ -88,7 +88,9 @@
 			
 		%>
 		</table>
-		
+	</div>
+	
+	<div id="formulario_producto">
 		<form action="/Pedidos/ModificarProductosController" method="post">
 			<label for="nombre">Nombre: </label>
 			<input type="text" name="nombre" value="${proInf.nombre}"/>
@@ -108,16 +110,17 @@
 			<input type="text" value="${proInf.id}" name="producto_id" style="display:none">
 			
     	<input type="submit" value="Modificar Producto">
-	</form>
+		</form>
     </div>
     
     <br>
-    
-    <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
-    	<input type="text" name="emp_id" value=<%= emp %> style="display:none">
-		<input type="text" name="usu_id" value=<%= usu %> style="display:none">
-		<input type="submit" value="Regresar a Inicio">
-    </form>
+    <div id="regresar">
+	    <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
+	    	<input type="text" name="emp_id" value=<%= emp %> style="display:none">
+			<input type="text" name="usu_id" value=<%= usu %> style="display:none">
+			<input type="submit" value="Regresar a Inicio">
+	    </form>
+    </div>
 </body>
 
 <footer>
