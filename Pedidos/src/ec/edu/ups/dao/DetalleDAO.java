@@ -12,4 +12,5 @@ public interface DetalleDAO extends GenericDAO<Detalle, Integer> {
 	public abstract void crear(Detalle detalle, int cabeceraId, int productoId);
 	public abstract List<Detalle> buscarPorCabecera(int empresaId);
 	public abstract int obtenerProductoId(Detalle detalle);
+	
 }

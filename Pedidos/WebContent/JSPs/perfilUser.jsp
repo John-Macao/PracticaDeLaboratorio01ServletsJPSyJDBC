@@ -35,12 +35,15 @@
 	</form>
 	
 	
-	<form action="/Pedidos/Elim" method="post">
+	<form action="/Pedidos/ListarCompraController" method="post">
 		<input type="text" name="usuario_id" value="${usuN.id}" style="display:none">
 		<input type="text" name="page" value="b" style="display:none">
-		<input type="submit" value="Listar Compras">
+		<input type="submit" value="Listar Todas las Compras">
 	</form>
 	
+	<form action="/Pedidos/CerrarSesion" method="post"> 
+		<input type="submit" value="Cerrar Sesion">
+	</form>
 	
 </body>
 </html>

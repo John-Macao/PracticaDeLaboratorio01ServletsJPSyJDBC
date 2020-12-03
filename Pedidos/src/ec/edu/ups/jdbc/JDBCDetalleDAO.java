@@ -7,6 +7,7 @@ import java.util.List;
 
 import ec.edu.ups.dao.DetalleDAO;
 import ec.edu.ups.modelo.Detalle;
+import ec.edu.ups.modelo.Producto;
 
 public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements DetalleDAO {
 
@@ -88,6 +89,23 @@ public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements 
 		}
 
 		return productoId;
+	}
+	
+	
+	
+	
+	public Detalle test(int id_cab) {
+		Detalle detalle = null;
+		ResultSet rs = sql.query("SELECT * FROM peddetalle WHERE det_cab_id=" + id_cab);
+		try {
+			if (rs != null && rs.next()) {
+				detalle = new Detalle(rs.getInt("det_id"), rs.getInt("det_cantidad"), null);
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+
+		return detalle;
 	}
 	
 
