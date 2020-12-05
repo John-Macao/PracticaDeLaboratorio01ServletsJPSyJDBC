@@ -4,19 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Perfil User</title>
+	<meta charset="ISO-8859-1">
+	<title>Perfil User</title>
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/perfil.css">
 </head>
 <body>
 	<c:set var="usuN" scope="request" value="${usuario}" />
 	
-	<h1>Persona encontrada</h1>		
-		
-	<p>Id: ${usuN.id}</p>
-	<p>Nombre: ${usuN.nombre}</p>
-	<p>Apellid: ${usuN.apellido}</p>
+	<header>
+		<h1>Persona encontrada</h1>		
+		<hr color="#313b4a" width="98%">
+		<h3 class="datos">Id: ${usuN.id}</h3>
+		<h3 class="datos">Nombre: ${usuN.nombre}</h3>
+		<h3 class="datos">Apellido: ${usuN.apellido}</h3>
+	</header>
 	
-	<h2> Main </h2>
+		
+	
+	<h2> Actividades de usuario </h2>
 	
 	<form action="/Pedidos/RegistrarCompraController" method="post">
 		<input type="text" name="usuario_id" value="${usuN.id}" style="display:none">

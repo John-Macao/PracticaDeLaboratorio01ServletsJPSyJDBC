@@ -19,8 +19,8 @@
 	<c:set var="proBus" scope="request" value="${producto}"/>
 
 	<header>
-        <img src="logo_ups.png" alt="Logo" width="700" height="100"/>
-        <h2>Buscar Producto</h2>
+        <img id="logo" src="/Pedidos/img/logo_ups.png" alt="Logo" width="700" height="100"/>
+        <h1>Menu de Inicio</h1>
 
         <nav id="list_1">
             <ul>

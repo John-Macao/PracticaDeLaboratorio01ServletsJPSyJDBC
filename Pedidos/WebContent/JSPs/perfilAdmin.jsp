@@ -4,21 +4,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Perfil Admin</title>
+	<meta charset="ISO-8859-1">
+	<title>Perfil Admin</title>
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/perfil.css">
 </head>
 <body>
 	<c:set var="usuA" scope="request" value="${usuario}" />
 	<c:set var="empA" scope="request" value="${empresa}" />
 
-	<h1>Administrador</h1>		
+	<header>
+		<h1>Administrador</h1>		
+		<hr color="#313b4a"  width="98%">
+		<h3 class="datos">Id: ${usuA.id}</h3>
+		<h3 class="datos">Nombre: ${usuA.nombre}</h3>
+		<h3 class="datos">Apellido: ${usuA.apellido}</h3>
+		<h3 class="datos">Empresa: ${empA.nombre} </h3>
+	</header>
+
 		
-	<p>Id: ${usuA.id}</p>
-	<p>Nombre: ${usuA.nombre}</p>
-	<p>Apellido: ${usuA.apellido}</p>
-	<p>Empresa: ${empA.nombre} </p>
 	
-	Administrar Productos
+	<h2> Actividades de administrador </h2>
 	
 	<form action="/Pedidos/JSPs/registrar_producto.jsp" method="post">
 		<input type="text" name="empresa_id" value="${empA.id}" style="display:none">
