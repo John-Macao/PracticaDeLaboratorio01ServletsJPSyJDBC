@@ -5,7 +5,7 @@ public class Producto {
 	private int id;
 	private String nombre;
 	private int cantidad;
-	//Estado: h (habilitado), i (inhabilitado)
+	//Estado: h (habilitado), i (inhabilitado) 
 	private String estado;
 	private Categoria categoria;
 	

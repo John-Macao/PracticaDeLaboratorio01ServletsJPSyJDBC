@@ -78,9 +78,6 @@ public class ModificarDetalleController extends HttpServlet {
 			listaDetalle2.add(new Detalle (detalle.getId(), detalle.getCantidad() , detalle.getProducto()));	
 		}
 		
-		System.out.println("1--------  " + detalle.getCantidad());
-		System.out.println("2--------  " + detalle.getProducto().getNombre());
-		System.out.println("3--------  " + detalle.getProducto().getCategoria().getNombre());
 		
 		
 		request.setAttribute("listaDetalle", listaDetalle2);
