@@ -108,5 +108,19 @@ public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements 
 		return detalle;
 	}
 	
+	public Detalle test2(int pro_id, int cab_id) {
+		Detalle detalle = null;
+		ResultSet rs = sql.query("SELECT * FROM peddetalle WHERE det_pro_id= " + pro_id + " AND det_cab_id= " + cab_id);
+		try {
+			if (rs != null && rs.next()) {
+				detalle = new Detalle(rs.getInt("det_id"), rs.getInt("det_cantidad"), null);
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+
+		return detalle;
+	}
+	
 
 }

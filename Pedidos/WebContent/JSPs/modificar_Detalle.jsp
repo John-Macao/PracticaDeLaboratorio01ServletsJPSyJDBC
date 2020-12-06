@@ -17,17 +17,34 @@
 	
 	<c:set var="listadoD" scope="request" value="${listaDetalle}" />
 	<c:set var="cab_id" scope="request" value="${cabecera_id}" />
-
+	
+     <table>
+        <tr>
+            <td><strong>Codigo</strong></td>
+            <td><strong>Producto</strong></td>
+            <td><strong>Cantidad</strong></td>
+            <td><strong>Categoria</strong></td>
+        </tr>
+        
+        <c:forEach var="fac"  items="${listaDetalle}">
+            <tr>
+                <td>${fac.id}</td>
+                <td>${fac.producto.getNombre()}</td>
+                <td>${fac.cantidad}</td>
+                <td>${fac.producto.categoria.getNombre()}</td>
+            </tr>
+        </c:forEach>
+    </table>
 	
 		 <form action="/Pedidos/ModificarDetalleController2" method="post">
 		 
-		 	<select name="det_id">
+		 	<select name="item3">
 					<c:forEach items="${listaDetalle}" var="id">
-       				<option>${id.id}</option>
+       				<option>${id.producto.getNombre()}</option>
 					</c:forEach>
 				</select>
 		 
-            	<label for="nombre">Ingrese Cantidad: </label>
+            	<label for="nombre"> Cantidad: </label>
             	<input type="text" name="cantidadP">
             	
 				<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">

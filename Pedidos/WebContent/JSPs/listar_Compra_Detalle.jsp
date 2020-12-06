@@ -21,16 +21,18 @@
 	
 	<table>
 		<tr>
-			<td><strong>ID      </strong></td>
-			<td><strong>    Cantidad</strong></td>
-			<td><strong>    Producto</strong></td>
+			<td><strong>Código </strong></td>
+			<td><strong> Producto</strong></td>
+			<td><strong> Cantidad</strong></td>
+			<td><strong> Categoría</strong></td>
 			
 		</tr>
-		<c:forEach var="d2" items="${listadoD2}">
+		<c:forEach var="d2" items="${listaDetalle2}">
 			<tr>
 				<td>${d2.id}</td>
-				<td>${d2.cantidad}</td>
 				<td>${d2.producto.getNombre()}</td>
+				<td>${d2.cantidad}</td>
+				<td>${d2.producto.categoria.getNombre()}</td>
 				
 			</tr>
 		</c:forEach>

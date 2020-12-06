@@ -20,30 +20,21 @@
 	
 	<table>
 		<tr>
-			<td><strong>Num. Pedido</strong></td>
-			<td><strong>Estado del pedido</strong></td>
+			<td><strong>Código </strong></td>
+			<td><strong>  Estado</strong></td>
 		</tr>
 		<c:forEach var="c" items="${listadoC}">
 			<tr>
 				<td>${c.id}</td>
 				<td>${c.estado}</td>
+				<td> <a href="/Pedidos/ListarCompraController3?id=${c.id}&usuario_id=<%= usu_id %>" >Ver Detalle	</a> </td>
+				<td> <a href="/Pedidos/EliminarCompraController2?id=${c.id}&usuario_id=<%= usu_id %>">	Eliminar Pedido</a> </td>
+				
 			</tr>
 		</c:forEach>
 	</table>
 	
-	 <form action="/Pedidos/EliminarCompraController2" method="post">
-				<select name="item">
-					<c:forEach items="${listaCabecera}" var="id">
-       				<option>${id.id}</option>
-					</c:forEach>
-				</select>
-				
-				<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
-            
-            <input type="submit" value="Eliminar ">
-       </form>
-        
-        
+	
     <form action="/Pedidos/BuscarUsuario" method="post">
     	<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
 		<input type="submit" value="Regresar al menu">

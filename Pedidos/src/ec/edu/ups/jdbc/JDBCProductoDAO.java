@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ec.edu.ups.dao.ProductoDAO;
+import ec.edu.ups.modelo.Categoria;
+import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Producto;
 
 public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implements ProductoDAO {
@@ -26,7 +28,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 
 	public Producto read(Integer id) {
 		Producto producto = null;
-		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_id=" + id + "AND pro_estado != 'e'");
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_id=" + id + " AND pro_estado != 'e'");
 		try {
 			if (rs != null && rs.next()) {
 				producto = new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
@@ -173,6 +175,36 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 		return producto;
 	}
 	
+	
+	public List<Producto> buscarPorCateoria2(int catId) {
+		List<Producto> list = new ArrayList<Producto>();
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_cat_id=" + catId + " AND pro_estado != 'e'");
+		try {
+			while (rs.next()) {
+				list.add(new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 
+						rs.getString("pro_estado"), null));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
+		}
+		return list;
+	}
+	
+	
+	public int obtenerCategoriaId(int producto) {
+		int cat_id = 0;
+		ResultSet rs = sql.query("SELECT pro_cat_id FROM producto WHERE pro_id = " + producto);
+		try {
+			if (rs != null && rs.next()) {
+				cat_id = rs.getInt("pro_cat_id");
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+
+		return cat_id;
+	}
 	
 	
 }

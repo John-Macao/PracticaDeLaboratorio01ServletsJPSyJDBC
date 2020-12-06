@@ -19,38 +19,38 @@ import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Producto;
 
 /**
- * Servlet implementation class ModificarDetalleController
+ * Servlet implementation class ListarCompraController3
  */
-@WebServlet("/ModificarDetalleController")
-public class ModificarDetalleController extends HttpServlet {
+@WebServlet("/ListarCompraController3")
+public class ListarCompraController3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 	private DetalleDAO detalleDao;
 	private List<Detalle> listaDetalle; 
 	
+	private List<Detalle> listaDetalle2; 
+	
 	private ProductoDAO productoDao;
     private List<Producto> listaProductos;
-    
     private CategoriaDAO categoriaDao;
     
     private Producto producto;
     private Detalle detalle;
     private Categoria categoria;
-	
-	
-    public ModificarDetalleController() {
+    
+    public ListarCompraController3() {
     	detalleDao = DAOFactory.getFactory().getDetalleDAO();
-    	
-    	categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
-    	
     	productoDao = DAOFactory.getFactory().getProductoDAO();
+    	categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
     	producto = new Producto();
     	detalle = new Detalle();
     	categoria = new Categoria();
     }
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 		int Cab = Integer.valueOf(request.getParameter("id"));
 		
 		System.out.println("llega user +++++++ "  + usuario_id);
@@ -78,38 +78,19 @@ public class ModificarDetalleController extends HttpServlet {
 			listaDetalle2.add(new Detalle (detalle.getId(), detalle.getCantidad() , detalle.getProducto()));	
 		}
 		
-		System.out.println("1--------  " + detalle.getCantidad());
-		System.out.println("2--------  " + detalle.getProducto().getNombre());
-		System.out.println("3--------  " + detalle.getProducto().getCategoria().getNombre());
 		
-		
-		request.setAttribute("listaDetalle", listaDetalle2);
+		request.setAttribute("listaDetalle2", listaDetalle2);
 		request.setAttribute("usuario_id", usuario_id);
-		request.setAttribute("cabecera_id", Cab);
 		
 		
-		getServletContext().getRequestDispatcher("/JSPs/modificar_Detalle.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/JSPs/lista_Eliminar_Compra_Detalle.jsp").forward(request, response);
 	}
 
     
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/*
-		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
-		int Cab = Integer.valueOf(request.getParameter("item"));
-		
-		
-		System.out.println("VER ID USUARIO +++++++ : " + usuario_id);
-		System.out.println("VER ID Cab enviada +++++++ : " + Cab);
-		
-		
-		listaDetalle = detalleDao.buscarPorCabecera(Cab);
-		System.out.println("Tamaño de la lista recuperada C +++++++ : " + listaDetalle.size());
-		request.setAttribute("listaDetalle", listaDetalle);
-		request.setAttribute("usuario_id", usuario_id);
-		request.setAttribute("cabecera_id", Cab);
-		*/
-		getServletContext().getRequestDispatcher("/JSPs/modificar_Detalle.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

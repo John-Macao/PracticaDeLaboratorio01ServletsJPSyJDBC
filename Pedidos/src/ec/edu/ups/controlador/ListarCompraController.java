@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,25 +45,39 @@ public class ListarCompraController extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("vamos bien ");
 		
 		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 		
 		listaCabeceraSinDelete = cabeceraDao.listarSinDelete(usuario_id);
 		
+		List<Cabecera> listaCabeceraSinDelete2 = new ArrayList<Cabecera>();
+		
 		for (int i = 0; i<listaCabeceraSinDelete.size(); i++ ) {
 			cabecera = listaCabeceraSinDelete.get(i);
+			if(cabecera.getEstado().equals("e")){
+				System.out.println("entra 1");
+				cabecera.setEstado("Espera");
+				
+			}else if (cabecera.getEstado().equals("A")) {
+				System.out.println("entra 2");
+				cabecera.setEstado("Aceptado");
+				
+			}else if( cabecera.getEstado().equals("R")){
+				System.out.println("entra 3");
+				cabecera.setEstado("Rechazado");
+			}
+			System.out.println("estado ver ---  : " + cabecera.getEstado());
+			
+			listaCabeceraSinDelete2.add(new Cabecera (cabecera.getId(), cabecera.getEstado(), cabecera.getDetalles() ));
+			
 			System.out.println("ID FUNCIONAA ----  :  " + cabecera.getId());
-			
-			//detalle = detalleDao.buscarPorCabecera(cabecera.getId());
-			
-			//Object[] row = (Object[]) listaCabeceraE.get(i);
-		      //System.out.println("Element "+i+Arrays.toString(row));
 			
 		}
 		
+		System.out.println("tamaño listaaaaaaa  : " + listaCabeceraSinDelete2.size());
 		
-		request.setAttribute("listaCabeceraSinDelete", listaCabeceraSinDelete);
+		
+		request.setAttribute("listaCabeceraSinDelete2", listaCabeceraSinDelete2);
 		request.setAttribute("usuario_id", usuario_id);
 		
 		

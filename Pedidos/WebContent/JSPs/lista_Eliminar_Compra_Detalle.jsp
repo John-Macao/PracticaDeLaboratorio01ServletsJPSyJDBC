@@ -16,29 +16,33 @@
 	
 	%>
 	
+	<c:set var="listadoSinD" scope="request" value="${listaDetalle2}" />
 	
-	<c:set var="listadoSinD" scope="request" value="${listaCabeceraSinDelete2}" />
-
-
+	
+	
 	<table>
 		<tr>
-			<td><strong>Código   </strong></td>
-			<td><strong>    Estado </strong></td>
+			<td><strong>Código </strong></td>
+			<td><strong> Producto</strong></td>
+			<td><strong> Cantidad</strong></td>
+			<td><strong> Categoría</strong></td>
+			
 		</tr>
-		<c:forEach var="SinD" items="${listadoSinD}">
+		<c:forEach var="d2" items="${listaDetalle2}">
 			<tr>
-				<td>${SinD.id}</td>
-				<td>${SinD.estado}</td>
-				<td> <a href="/Pedidos/ListarCompraController2?id=${SinD.id}&usuario_id=<%= usu_id %>" >Ver Detalle	</a> </td>
+				<td>${d2.id}</td>
+				<td>${d2.producto.getNombre()}</td>
+				<td>${d2.cantidad}</td>
+				<td>${d2.producto.categoria.getNombre()}</td>
+				
 			</tr>
 		</c:forEach>
 	</table>
 	
-    <form action="/Pedidos/BuscarUsuario" method="post">
+    <form action="/Pedidos/EliminarCompraController" method="post">
     	<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
-		<input type="submit" value="Regresar al menu">
+		<input type="submit" value="Regresar ">
     </form>
-
 
 
 

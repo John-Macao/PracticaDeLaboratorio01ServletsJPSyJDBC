@@ -52,4 +52,20 @@ public class JDBCCategoriaDAO extends JDBCGenericDAO<Categoria, Integer> impleme
 		return list;
 	}
 
+	
+	public Categoria read2(String cat_nom) {
+		Categoria categoria = null;
+		ResultSet rs = sql.query("SELECT * FROM categoria WHERE cat_nombre= '" + cat_nom + "'");
+		try {
+			if (rs != null && rs.next()) {
+				categoria = new Categoria(rs.getInt("cat_id"), rs.getString("cat_nombre"));
+			}
+		} catch (SQLException e) {
+			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
+		}
+
+		return categoria;
+	}
+	
+	
 }

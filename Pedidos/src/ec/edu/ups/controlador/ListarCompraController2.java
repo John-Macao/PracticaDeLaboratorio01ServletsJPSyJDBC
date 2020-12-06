@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ec.edu.ups.dao.CategoriaDAO;
 import ec.edu.ups.dao.DAOFactory;
 import ec.edu.ups.dao.DetalleDAO;
 import ec.edu.ups.dao.ProductoDAO;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Producto;
 
@@ -30,22 +32,66 @@ public class ListarCompraController2 extends HttpServlet {
 	
 	private ProductoDAO productoDao;
     private List<Producto> listaProductos;
+    private CategoriaDAO categoriaDao;
     
     private Producto producto;
     private Detalle detalle;
-	
+    private Categoria categoria;
 	
     public ListarCompraController2() {
     	
     	detalleDao = DAOFactory.getFactory().getDetalleDAO();
     	productoDao = DAOFactory.getFactory().getProductoDAO();
+    	categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
     	producto = new Producto();
     	detalle = new Detalle();
+    	categoria = new Categoria();
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
+		int Cab = Integer.valueOf(request.getParameter("id"));
+		
+		System.out.println("llega user +++++++ "  + usuario_id);
+		System.out.println("llega cabecera id +++++++ "  + Cab);
+		
+		listaDetalle = detalleDao.buscarPorCabecera(Cab);
+		
+		
+		listaProductos = productoDao.find();
+		List<Detalle> listaDetalle2 = new ArrayList<Detalle>();
+		
+		for (int i = 0; i<listaDetalle.size(); i++ ) {
+			detalle = listaDetalle.get(i);
+			
+			int producto_id =  detalleDao.obtenerProductoId(detalle);
+			int cat_id = productoDao.obtenerCategoriaId(producto_id);
+			
+			producto = productoDao.TEST(producto_id);
+			
+			categoria = categoriaDao.read(cat_id);
+			
+			producto.setCategoria(categoria);
+			detalle.setProducto(producto);
+			
+			listaDetalle2.add(new Detalle (detalle.getId(), detalle.getCantidad() , detalle.getProducto()));	
+		}
+		
+		
+		
+		request.setAttribute("listaDetalle2", listaDetalle2);
+		request.setAttribute("usuario_id", usuario_id);
+		
+		
+		
+		getServletContext().getRequestDispatcher("/JSPs/listar_Compra_Detalle.jsp").forward(request, response);
+	}
+    
+    
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String url = null;
+		/*
 		int usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 		int Cab = Integer.valueOf(request.getParameter("item"));
 		
@@ -84,9 +130,9 @@ public class ListarCompraController2 extends HttpServlet {
 		request.setAttribute("listaDetalle2", listaDetalle2);
 		//request.setAttribute("usuario_id", usuario_id);
 		//request.setAttribute("cabecera_id", Cab);
+		*/
 		
-		
-		getServletContext().getRequestDispatcher("/JSPs/listar_Compra_Detalle.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 
 }

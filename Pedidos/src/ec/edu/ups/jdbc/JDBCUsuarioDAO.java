@@ -10,9 +10,9 @@ import ec.edu.ups.modelo.Usuario;
 
 public class JDBCUsuarioDAO extends JDBCGenericDAO<Usuario, Integer> implements UsuarioDAO {
 	
-	public Usuario login(String usuairo, String contrasena) {
+	public Usuario login(String email, String contrasena) {
 		Usuario usuario = null;
-		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_usuario='" + usuairo + "' AND usu_contrasena='" + contrasena +"'");
+		ResultSet rs = sql.query("SELECT * FROM usuario WHERE usu_usuario='" + email + "' AND usu_contrasena='" + contrasena +"'");
 		try {
 			if (rs != null && rs.next()) {
 				usuario = new Usuario(rs.getInt("usu_id"), rs.getString("usu_nombre"), rs.getString("usu_apellido"),
