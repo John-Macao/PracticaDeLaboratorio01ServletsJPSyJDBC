@@ -1,0 +1,36 @@
+@charset "ISO-8859-1";
+
+body {
+    background-color: #313b4a;
+}
+
+
+header {
+    width: 100%;
+    color: white;
+    background-color: #C23035;
+    float: left;
+}
+
+h1 {
+	margin-left: 43%;
+}
+
+.datos{
+	float: left;
+	margin-left: 30px;
+}
+
+h2{
+	clear: both;
+	margin-left: 30px;
+	padding-top: 10px;
+	color: white;
+}
+
+input {
+	width: 300px;
+	height: 50px;
+	margin-left: 40%;
+	margin-bottom: 10px
+}
