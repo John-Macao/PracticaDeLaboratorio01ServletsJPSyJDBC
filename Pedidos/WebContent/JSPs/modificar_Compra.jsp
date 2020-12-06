@@ -6,13 +6,20 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
-	
+	<title>Modificar Compra</title>
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/perfil.css">
 	
 	
 </head>
 <body>
+
+	<header>
+		<h1>Persona encontrada</h1>		
+		<hr color="#313b4a" width="98%">
+		<h3 class="datos">Id: ${usuN.id}</h3>
+		<h3 class="datos">Nombre: ${usuN.nombre}</h3>
+		<h3 class="datos">Apellido: ${usuN.apellido}</h3>
+	</header>
 
 	<% 
 		String usu_id = request.getParameter("usuario_id");
