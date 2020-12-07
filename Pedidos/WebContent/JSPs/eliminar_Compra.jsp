@@ -19,7 +19,6 @@
             <ul>
                 <li><a href="login.html">Login</a></li>
                 <li>Empresas</li>
-                <li>Productos</li>
             </ul>
         </nav>
     </header>
