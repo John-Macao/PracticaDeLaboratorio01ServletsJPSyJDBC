@@ -66,7 +66,7 @@
     <br>
     
     <aside id="primer_metodo" style="dyssplay:none">
-    
+    	<table class='table'>
     	<% 
     		List<Producto> lista_P = (List<Producto>) request.getAttribute("productos"); 
     		ProductoDAO productoDao = DAOFactory.getFactory().getProductoDAO();
@@ -78,8 +78,7 @@
     		int categoria_id;
     	
     		if(lista_P != null){
-    			out.println("<table class='table'><tr>" +
-    					"<td class='titulo'><strong>Codigo</strong></td>" +
+    			out.println("<tr><td class='titulo'><strong>Codigo</strong></td>" +
 						"<td class='titulo'><strong>Nombre</strong></td>" +
 						"<td class='titulo'><strong>Cantidad</strong></td>" +
 						"<td class='titulo'><strong>Categoria</strong></td></tr>");
@@ -96,21 +95,21 @@
     				
     				out.println("<td>" + cate.getNombre() + "</td></tr>");
     			}
-    			
-    			out.println("</table>");
    			}
     	
     	%>
+    	</table>
     </aside>
     <br>
     
     <aside id="segundo_metodo" style="dyssplay:none">
+    	<table class='table'>
+    	
     	<%
     		Producto prod2 = (Producto) request.getAttribute("producto");
     	
     		if(prod2 != null){
-    			out.println("<table class='table'><tr>" +
-    					"<td class='titulo'><strong>Codigo</strong></td>" +
+    			out.println("<tr><td class='titulo'><strong>Codigo</strong></td>" +
 						"<td class='titulo'><strong>Nombre</strong></td>" +
 						"<td class='titulo'><strong>Cantidad</strong></td>" +
 						"<td class='titulo'><strong>Categoria</strong></td></tr>");
@@ -122,9 +121,10 @@
 				categoria_id = productoDao.categoriaId(prod2.getId());
 				cate = categoriaDao.read(categoria_id);
 				
-				out.println("<td>" + cate.getNombre() + "</td></tr></table>");
+				out.println("<td>" + cate.getNombre() + "</td></tr>");
     		}
     	%>
+    	</table>
     </aside>
     
     <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
