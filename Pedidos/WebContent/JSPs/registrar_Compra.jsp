@@ -42,13 +42,13 @@
 	
 	<c:set var="aa" scope="request" value="${cabecera_id}" />
 	
-	<h1>Registro </h1>
+	<!--h1>Registro </h1-->
 	
 	<div id=opcion1>
-        <h1>Agregar Compra</h1>
+        <h1 class="tema">Agregar Compra</h1>
         
         
-        <form action="/Pedidos/TEST" method="post">
+        <form class="form" action="/Pedidos/TEST" method="post">
             
             <label for="producto">Categoria: </label>
             
@@ -64,13 +64,13 @@
             <input type="submit" value="Filtrar">
         </form>
     </div>
-    
-     <table>
+    <br>
+     <table class="table" id="recto">
         <tr>
-            <td><strong>Codigo</strong></td>
-            <td><strong>Producto</strong></td>
-            <td><strong>Cantidad</strong></td>
-            <td><strong>Categoria</strong></td>
+            <td class="titulo"><strong>Codigo</strong></td>
+            <td class="titulo"><strong>Producto</strong></td>
+            <td class="titulo"><strong>Cantidad</strong></td>
+            <td class="titulo"><strong>Categoria</strong></td>
         </tr>
         
         <c:forEach var="fac"  items="${listaProductos2}">
@@ -82,16 +82,17 @@
             </tr>
         </c:forEach>
     </table>
+	
+	<br>
 
-
-        <form action="/Pedidos/TEST" method="post">
-            
+        <form class="form" action="/Pedidos/TEST" method="post">
+            	<label for="categoria">Categoria: </label>
 				<select name="item">
 					<c:forEach items="${listaProductos2}" var="id">
        				<option> ${id.nombre}</option>
 					</c:forEach>
 				</select>
-				
+				<label for="cantidad">Cantidad: </label>
 				<input type="text" name="cantidad" >
 				<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
             	<input type="text" value="${aa}"  name="ver_id" style="display:none">
@@ -111,7 +112,7 @@
 
     <form action="/Pedidos/BuscarUsuario" method="post">
     	<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
-		<input type="submit" value="Finalizar Compra">
+		<input class="btng" type="submit" value="Finalizar Compra">
     </form>
 
 </body>

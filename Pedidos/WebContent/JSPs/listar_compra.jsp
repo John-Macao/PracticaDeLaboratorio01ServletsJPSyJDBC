@@ -6,17 +6,22 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Listar Compra</title>
-	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/perfil.css">
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/generalUsuario.css">
 </head>
 <body>
 
 	<header>
-		<h1>Persona encontrada</h1>		
-		<hr color="#313b4a" width="98%">
-		<h3 class="datos">Id: ${usuN.id}</h3>
-		<h3 class="datos">Nombre: ${usuN.nombre}</h3>
-		<h3 class="datos">Apellido: ${usuN.apellido}</h3>
-	</header>
+        <img id="logo" src="/Pedidos/img/logo_ups.png" alt="Logo" width="700" height="100"/>
+        <h1>Menu de Inicio</h1>
+
+        <nav id="list_1">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li>Empresas</li>
+                <li>Productos</li>
+            </ul>
+        </nav>
+    </header>
 
 	<% 
 		String usu_id = request.getParameter("usuario_id");
@@ -25,14 +30,15 @@
 	
 	%>
 	
+	<div class="espacio"></div>
 	
 	<c:set var="listadoSinD" scope="request" value="${listaCabeceraSinDelete2}" />
 
 
-	<table>
+	<table class="table" id="recto">
 		<tr>
-			<td><strong>Código   </strong></td>
-			<td><strong>    Estado </strong></td>
+			<td class="titulo"><strong>Código   </strong></td>
+			<td class="titulo"><strong>    Estado </strong></td>
 		</tr>
 		<c:forEach var="SinD" items="${listadoSinD}">
 			<tr>
@@ -45,7 +51,7 @@
 	
     <form action="/Pedidos/BuscarUsuario" method="post">
     	<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
-		<input type="submit" value="Regresar al menu">
+		<input class="btng" type="submit" value="Regresar al menu">
     </form>
 
 
