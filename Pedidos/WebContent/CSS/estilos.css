@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 
 body {
-    background-color: #313b4a;
+    background-color: rgb(53,53,53);
 }
 
 .jump {
@@ -11,8 +11,8 @@ body {
 
 header {
     width: 100%;
-    color: white;
-    background-color: #C23035;
+    color: rgb(0,128,220);
+    background-color: rgb(40,40,40);
     float: left;
 }
 
@@ -44,7 +44,7 @@ li {
 
 a {
 	text-decoration: none;
-	color: white;
+	color: rgb(0,128,220);
 }
 
 a:hover{
@@ -54,26 +54,26 @@ a:hover{
 #column_right {
     width: 30%;
     height: 562px;
-    background-color: #BF4E08;
+    background-color: rgb(40,40,40);
     float: left;
 }
 
 .empty_a {
     height: 230px;
     margin: 40px;
-    background-color: #cb692d;
+    background-color: rgb(40,40,40);
 }
 
 .empty_b {
     height: 230px;
     margin: 40px;
-    background-color: #cb692d;
+    background-color: rgb(40,40,40);
 }
 
 #section1 {
     width: 67%;
     padding: 10px 20px;
-    background-color: white;
+    background-color: rgb(53,53,53);
     float: left;
 }
 
@@ -105,5 +105,14 @@ footer fieldset {
     text-decoration: none;
     color: initial;
 }
+
+p{
+	color: rgb(223,238,255);
+}
+
+h2{
+	color: rgb(0,128,220);
+}
+
 
 

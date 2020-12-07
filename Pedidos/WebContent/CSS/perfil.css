@@ -1,14 +1,14 @@
 @charset "ISO-8859-1";
 
 body {
-    background-color: #313b4a;
+    background-color: rgb(53,53,53);
 }
 
 
 header {
     width: 100%;
-    color: white;
-    background-color: #C23035;
+    color: rgb(0,128,220);
+    background-color: rgb(40,40,40);
     float: left;
 }
 
@@ -19,13 +19,19 @@ h1 {
 .datos{
 	float: left;
 	margin-left: 30px;
+	color: rgb(0,128,220);
+}
+
+.datos2{
+	float: left;
+	color: rgb(223,238,255);
 }
 
 h2{
 	clear: both;
 	margin-left: 30px;
 	padding-top: 10px;
-	color: white;
+	color: rgb(0,128,220);
 }
 
 input {

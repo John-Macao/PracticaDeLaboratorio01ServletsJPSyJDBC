@@ -14,9 +14,9 @@
 	<header>
 		<h1>Persona encontrada</h1>		
 		<hr color="#313b4a" width="98%">
-		<h3 class="datos">Id: ${usuN.id}</h3>
-		<h3 class="datos">Nombre: ${usuN.nombre}</h3>
-		<h3 class="datos">Apellido: ${usuN.apellido}</h3>
+		<h3 class="datos">Id: </h3><h3 class="datos2">${usuN.id}</h3>
+		<h3 class="datos">Nombre: </h3><h3 class="datos2">${usuN.nombre}</h3>
+		<h3 class="datos">Apellido: </h3><h3 class="datos2">${usuN.apellido}</h3>
 	</header>
 	
 		

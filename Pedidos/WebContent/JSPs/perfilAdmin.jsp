@@ -15,10 +15,10 @@
 	<header>
 		<h1>Administrador</h1>		
 		<hr color="#313b4a"  width="98%">
-		<h3 class="datos">Id: ${usuA.id}</h3>
-		<h3 class="datos">Nombre: ${usuA.nombre}</h3>
-		<h3 class="datos">Apellido: ${usuA.apellido}</h3>
-		<h3 class="datos">Empresa: ${empA.nombre} </h3>
+		<h3 class="datos">Id: </h3><h3 class="datos2">${usuA.id}</h3>
+		<h3 class="datos">Nombre: </h3><h3 class="datos2">${usuA.nombre}</h3>
+		<h3 class="datos">Apellido: </h3><h3 class="datos2">${usuA.apellido}</h3>
+		<h3 class="datos">Empresa: </h3><h3 class="datos2">${empA.nombre} </h3>
 	</header>
 
 		

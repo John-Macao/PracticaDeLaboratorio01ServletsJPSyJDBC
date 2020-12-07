@@ -15,7 +15,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Listar Pedidos</title>
-	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/generalAdministrador.css">
 </head>
 <body>
 	<c:set var="lista_U" scope="request" value="${usuarios}"/>
@@ -41,13 +41,13 @@
     <div class="jump"></div>
     
     <div id="usuarios">
-    	<h1>Usuarios</h1>
+    	<h1 class="tema">Usuarios</h1>
     	
-    	<table id="tabla_users">
+    	<table class="table" id="tabla_users">
 			<tr>
-				<td><strong>Nombre</strong></td>
-				<td><strong>Apellido</strong></td>
-				<td><strong>Pedidos</strong></td>
+				<td class="titulo"><strong>Nombre</strong></td>
+				<td class="titulo"><strong>Apellido</strong></td>
+				<td class="titulo"><strong>Pedidos</strong></td>
 			</tr>
 			
 			<c:forEach var="us" items="${lista_U}">
@@ -125,7 +125,7 @@
     <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
     	<input type="text" name="emp_id" value="<%= emp %>" style="display:none">
 		<input type="text" name="usu_id" value="<%= usu %>" style="display:none">
-		<input type="submit" value="Regresar a Inicio">
+		<input class="btng" type="submit" value="Regresar a Inicio">
     </form>
     
     <footer>

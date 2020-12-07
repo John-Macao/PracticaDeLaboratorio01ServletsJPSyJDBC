@@ -13,7 +13,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Modificar Productos</title>
-	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/generalAdministrador.css">
 </head>
 <body>
 	
@@ -42,14 +42,15 @@
     <div class="jump"></div>
 
     <div id="lista_Productos">
-        <h1>Modificar Productos</h1>
+        <h1 class="tema">Modificar Productos</h1>
         
-        <table>
+        <table class="table">
 		<tr>
-			<td><strong>Nombre</strong></td>
-			<td><strong>Cantidad</strong></td>
-			<td><strong>Categoria</strong></td>
-			<td><strong>Modificar</strong></td>
+			<td class="titulo"><strong>Nombre</strong></td>
+			<td class="titulo"><strong>Cantidad</strong></td>
+			<td class="titulo"><strong>Categoria</strong></td>
+			<td class="titulo"><strong><p class="esp">Modificar</p></strong></td>
+			<td class="titulo"><strong><p class="esp">Eliminar</p></strong></td>
 		</tr>
 		<% 
 			List<Producto> lista_P = (List<Producto>) request.getAttribute("productos");
@@ -69,9 +70,9 @@
 				
 				cate = categoriaDao.read(categoria_id);
 				
-				out.println("<tr><td>" + prod.getNombre() + "<td>");
-				out.println("<td>" + prod.getCantidad() + "<td>");
-				out.println("<td>" + cate.getNombre() + "<td>");
+				out.println("<tr><td>" + prod.getNombre() + "</td>");
+				out.println("<td>" + prod.getCantidad() + "</td>");
+				out.println("<td>" + cate.getNombre() + "</td>");
 				out.println("<td><form action='/Pedidos/BuscarProductosController' method='post'>" +
 						"<input type='text' value='m' name='page' style='display:none'>" + 
 						"<input type='text' value='ide' name='bus' style='display:none'>" + 
@@ -89,9 +90,9 @@
 		%>
 		</table>
 	</div>
-	
+	<br>
 	<div id="formulario_producto">
-		<form action="/Pedidos/ModificarProductosController" method="post">
+		<form class="form" action="/Pedidos/ModificarProductosController" method="post">
 			<label for="nombre">Nombre: </label>
 			<input type="text" name="nombre" value="${proInf.nombre}"/>
 			
@@ -109,7 +110,7 @@
 			<input type="text" name="usu_id" value=<%= usu %> style="display:none">
 			<input type="text" value="${proInf.id}" name="producto_id" style="display:none">
 			
-    	<input type="submit" value="Modificar Producto">
+    	<input class="btng" type="submit" value="Modificar Producto">
 		</form>
     </div>
     
@@ -118,7 +119,7 @@
 	    <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
 	    	<input type="text" name="emp_id" value=<%= emp %> style="display:none">
 			<input type="text" name="usu_id" value=<%= usu %> style="display:none">
-			<input type="submit" value="Regresar a Inicio">
+			<input class="btng" type="submit" value="Regresar a Inicio">
 	    </form>
     </div>
 </body>

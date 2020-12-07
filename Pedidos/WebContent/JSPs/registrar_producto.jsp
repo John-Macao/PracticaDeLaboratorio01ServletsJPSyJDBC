@@ -6,7 +6,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Registrar Producto</title>
-	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/generalAdministrador.css">
 </head>
 <body>
 	<% 
@@ -30,26 +30,29 @@
     <div class="jump"></div>
 
 	<div id=opcion1>
-        <h1>Agregar Productos</h1>
+        <h1 class="tema">Agregar Productos</h1>
 
-        <form action="/Pedidos/RegistrarProductosController" method="post">
+        <form class="form" action="/Pedidos/RegistrarProductosController" method="post">
+        	<br>
             <label for="nombre">Nombre del Producto: </label>
+			<br>
             <input type="text" name="nombre">
-
+			<br>
             <label for="cantidad">Cantidad en Stock: </label>
+			<br>
             <input type="text" name="cantidad">
-
+			<br>
             <label for="categoria">Categoria: </label>
             <select name="categoria">
                 <option value="1">Perfumeria</option> 
                 <option value="2">Maquillaje</option>
                 <option value="3">Moda</option>
             </select>
-
+			<br>
 			<input type="text" value=<%= emp_id %> name="empresa_id" style="display:none">
 			<input type="text" value=<%= usu_id %>  name="usuario_id" style="display:none">
-
-            <input type="submit" value="Registrar Producto">
+			<br>
+            <input class="btng" type="submit" value="Registrar Producto">
         </form>
     </div>
     
@@ -58,7 +61,7 @@
     <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
     	<input type="text" name="emp_id" value=<%= emp_id %>  style="display:none">
 		<input type="text" name="usu_id" value=<%= usu_id %>  style="display:none">
-		<input type="submit" value="Regresar a Inicio">
+		<input class="btng" type="submit" value="Regresar a Inicio">
     </form>
 </body>
 

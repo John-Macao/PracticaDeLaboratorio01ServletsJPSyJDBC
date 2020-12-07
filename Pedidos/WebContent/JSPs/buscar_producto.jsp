@@ -6,7 +6,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Buscar Producto</title>
-	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/estilos.css">
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/generalAdministrador.css">
 </head>
 <body>
 
@@ -32,8 +32,8 @@
     </header>
 
     <div class="jump"></div>
-    
-    <form action="/Pedidos/BuscarProductosController" method="post">
+    <br>
+    <form class="form" action="/Pedidos/BuscarProductosController" method="post">
     	<label for="categoria">Categoria: </label>
     	<select name="categoria">
             <option value="1">Perfumeria</option> 
@@ -48,8 +48,8 @@
         
         <input type="submit" value="Buscar por Categoria">
     </form>
-    
-    <form action="/Pedidos/BuscarProductosController" method="post">
+    <br>
+    <form class="form" action="/Pedidos/BuscarProductosController" method="post">
     	<label for="nombre">Nombre del Producto: </label>
     	<input type="text" name="nombre">
     	
@@ -60,9 +60,9 @@
     	
     	<input type="submit" value="Buscar por Nombre">
     </form>
-    
+    <br>
     <aside id="primer_metodo" style="dyssplay:none">
-    	<table>
+    	<table class="table">
 		<tr>
 			<td><strong>Nombre</strong></td>
 			<td><strong>Cantidad</strong></td>
@@ -77,9 +77,9 @@
 		</c:forEach>
 		</table>
     </aside>
-    
+    <br>
     <aside id="segundo_metodo" style="dyssplay:none">
-    	<table>
+    	<table class="table">
 		<tr>
 			<td><strong>Nombre</strong></td>
 			<td><strong>Cantidad</strong></td>
@@ -96,7 +96,7 @@
     <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
     	<input type="text" name="emp_id" value=<%= emp_id %>  style="display:none">
 		<input type="text" name="usu_id" value=<%= usu_id %>  style="display:none">
-		<input type="submit" value="Regresar a Inicio">
+		<input class="btng" type="submit" value="Regresar a Inicio">
     </form>
 </body>
 
