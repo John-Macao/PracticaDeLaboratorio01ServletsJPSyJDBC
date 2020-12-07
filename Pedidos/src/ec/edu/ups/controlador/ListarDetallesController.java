@@ -71,7 +71,6 @@ public class ListarDetallesController extends HttpServlet {
 			request.setAttribute("usuario_id", usuario_id);
 			request.setAttribute("usuarioS_id", usuarioS_id);
 			request.setAttribute("empresa_id", empresa_id);
-			request.setAttribute("comprobar", comprobar);
 			
 			url = "/JSPs/administrar_pedidos.jsp";
 		} catch(Exception e) {

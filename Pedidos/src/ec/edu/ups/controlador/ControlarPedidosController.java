@@ -58,9 +58,12 @@ public class ControlarPedidosController extends HttpServlet {
 			cabecera = cabeceraDao.read(cabecera_id);
 			usuarios = usuarioDao.buscarSoloUsuario(empresa_id);
 			
+			System.out.println("Cabecera ID: " + cabecera.getId());
+			
 			if (estado.equals("aceptado")) {
 				cabecera.setEstado("A");
 				cabeceraDao.update(cabecera);
+				
 			} else if(estado.equals("negado")) {
 				cabecera.setEstado("R");
 				cabeceraDao.update(cabecera);
