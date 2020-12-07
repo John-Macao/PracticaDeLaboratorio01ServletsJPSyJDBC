@@ -57,13 +57,11 @@
 			ProductoDAO productoDao = DAOFactory.getFactory().getProductoDAO();
 			CategoriaDAO categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
 			
-			Producto prod = new Producto();
-			Categoria cate = new Categoria();
+			Producto prod;
+			Categoria cate;
 			
 			int categoria_id;
-		%>
-		
-		<% 
+			
 			for(int i = 0; i < lista_P.size(); i++) {
 				prod = lista_P.get(i);
 				categoria_id = productoDao.categoriaId(prod.getId());

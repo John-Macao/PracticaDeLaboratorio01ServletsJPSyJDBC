@@ -36,8 +36,6 @@ public class ListarDetallesController extends HttpServlet {
 	private int usuarioS_id;
 	private int empresa_id;
 	private int cabecera_id;
-	private String comprobar;
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -54,7 +52,6 @@ public class ListarDetallesController extends HttpServlet {
 		String url = null;
 		
 		try {
-			comprobar = "t";
 			
 			usuario_id = Integer.valueOf(request.getParameter("usuario_id"));
 			usuarioS_id = Integer.valueOf(request.getParameter("usuarioS_id"));
@@ -64,6 +61,19 @@ public class ListarDetallesController extends HttpServlet {
 			cabeceras = cabeceraDao.listarPorUsuario(usuarioS_id);
 			detalles = detalleDao.buscarPorCabecera(cabecera_id);
 			usuarios = usuarioDao.buscarSoloUsuario(empresa_id);
+			
+			for(int i = 0; i < cabeceras.size(); i++) {
+				if(cabeceras.get(i).getEstado().equals("e")) {
+					cabeceras.get(i).setEstado("Espera");
+					
+				}else if (cabeceras.get(i).getEstado().equals("A")) {
+					cabeceras.get(i).setEstado("Aceptado");
+					
+				}else if(cabeceras.get(i).getEstado().equals("R")){
+					cabeceras.get(i).setEstado("Rechazado");
+				}
+			}
+			
 			
 			request.setAttribute("detalles", detalles);
 			request.setAttribute("cabeceras", cabeceras);

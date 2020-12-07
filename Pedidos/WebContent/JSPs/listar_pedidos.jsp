@@ -7,8 +7,10 @@
 <%@page import="ec.edu.ups.modelo.Producto"%>
 <%@page import="ec.edu.ups.modelo.Detalle"%>
 <%@page import="ec.edu.ups.modelo.Cabecera"%>
+<%@page import="ec.edu.ups.modelo.Categoria"%>
 <%@page import="ec.edu.ups.dao.DetalleDAO"%>
 <%@page import="ec.edu.ups.dao.ProductoDAO"%>
+<%@page import="ec.edu.ups.dao.CategoriaDAO"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -71,7 +73,18 @@
     <div id="pedidos">
   		<% 
 	  		List<Cabecera> lista_C = (List<Cabecera>) request.getAttribute("cabeceras");
-			Cabecera cab;
+  			List<Detalle> lista_D;
+  			DetalleDAO detalleDao = DAOFactory.getFactory().getDetalleDAO();
+			ProductoDAO productoDao = DAOFactory.getFactory().getProductoDAO();
+			CategoriaDAO categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
+			
+			Detalle deta;
+			Producto prod;
+ 			Cabecera cab;
+ 			Categoria cate;
+ 			
+ 			int producto_id;
+ 			int categoria_id;
 	  		
 			if(lista_C != null){
 				int usuS = (Integer) request.getAttribute("usuarioS_id");
@@ -79,47 +92,53 @@
 	   			for(int i = 0; i < lista_C.size(); i++){
 	   				cab = lista_C.get(i);
 	   				
-	   				out.println("<h4>Pedido " + (i+1) + "</h4>");
+	   				out.println("<h3 class='tema'>Pedido " + (i+1) + "</h3>");
 	   				
-	   				out.println("<table id='tabla_cabeceras'>" +
-	   				"<tr><td><strong>Numero</strong></td>" +
-	   				"<td><strong>Estado</strong></td></tr>");
+	   				out.println("<table class='table' id='tabla_cabeceras'>" +
+			   				"<tr><td class='titulo'><strong>Numero</strong></td>" +
+			   				"<td class='titulo'><strong>Estado</strong></td></tr>");
+	   				
+	   				if(cab.getEstado().equals("e")) {
+						cab.setEstado("Espera");
+						
+					}else if (cab.getEstado().equals("A")) {
+						cab.setEstado("Aceptado");
+						
+					}else if(cab.getEstado().equals("R")){
+						cab.setEstado("Rechazado");
+					}
 	   				
 	   				out.println("<tr><td>" + cab.getId() + "</td>" + 
 	   							"<td>" + cab.getEstado() + "</td></tr></table>");
+				
+	   				lista_D = detalleDao.buscarPorCabecera(cab.getId());
+	   				
+	   				out.println("<table class='table' id='tabla_detalles'>" +
+			   				"<tr><td class='titulo'>Codigo</strong></td>" +
+			   				"<td class='titulo'><strong>Producto</strong></td>" + 
+			   				"<td class='titulo'><strong>Cantidad</strong></td>" + 
+			   				"<td class='titulo'><strong>Categoria</strong></td></tr>");
+	   				
+	   				for(int j = 0; j < lista_D.size(); j++){
+	   					deta = lista_D.get(j);
+	   					
+	   					producto_id = detalleDao.obtenerProductoId(deta);
+	   					prod = productoDao.read(producto_id);
 						
+	   					categoria_id = productoDao.categoriaId(prod.getId());
+						cate = categoriaDao.read(categoria_id);
+						
+	   					out.println("<tr><td>" + deta.getId() + "</td>");
+		                out.println("<td>" + prod.getNombre() + "</td>");
+		                out.println("<td>" + deta.getCantidad() + "</td>"); 
+		                out.println("<td>" + cate.getNombre() + "</td></tr>");
+	   				}
+	   				
+	   				out.println("</table>");
 				}
+	   			
 			}
 		%>	
-    </div>
-    
-    <div id="detalle">
-		<% 
-			List<Detalle> lista_D = (List<Detalle>) request.getAttribute("detalles");
-			DetalleDAO detalleDao = DAOFactory.getFactory().getDetalleDAO();
-			ProductoDAO productoDao = DAOFactory.getFactory().getProductoDAO();
-			
-			Detalle deta = new Detalle();
-			Producto prod = new Producto();
-			
-			int producto_id;
-			
-			if(lista_D != null){
-				
-				for (int i = 0; i < lista_D.size(); i++){
-					Detalle control = lista_D.get(i);
-					deta = control;
-					
-					producto_id =  detalleDao.obtenerProductoId(deta);
-					
-					prod = productoDao.read(producto_id);
-					
-	                out.println("<tr><td>" + prod.getNombre() + "</td>");
-	                out.println("<td>" + control.getCantidad() + "</td></tr>");
-       			}
-			}
-			
-		%>
     </div>
     
     <form action="/Pedidos/BuscarUsuarioAdmin" method="post">

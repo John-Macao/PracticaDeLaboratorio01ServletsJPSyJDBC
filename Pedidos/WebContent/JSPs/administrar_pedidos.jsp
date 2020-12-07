@@ -7,8 +7,10 @@
 <%@page import="ec.edu.ups.modelo.Producto"%>
 <%@page import="ec.edu.ups.modelo.Detalle"%>
 <%@page import="ec.edu.ups.modelo.Cabecera"%>
+<%@page import="ec.edu.ups.modelo.Categoria"%>
 <%@page import="ec.edu.ups.dao.DetalleDAO"%>
 <%@page import="ec.edu.ups.dao.ProductoDAO"%>
+<%@page import="ec.edu.ups.dao.CategoriaDAO"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
@@ -87,6 +89,16 @@
 	   			for(int i = 0; i < lista_C.size(); i++){
 	   				cab = lista_C.get(i);
 	   				
+	   				if(cab.getEstado().equals("e")) {
+						cab.setEstado("Espera");
+						
+					}else if (cab.getEstado().equals("A")) {
+						cab.setEstado("Aceptado");
+						
+					}else if(cab.getEstado().equals("R")){
+						cab.setEstado("Rechazado");
+					}
+	   				
 	   				out.println("<tr><td>" + cab.getId() + "</td>" + 
 	   				"<td>" + cab.getEstado() + "</td>");
 	   				
@@ -124,27 +136,35 @@
 			List<Detalle> lista_D = (List<Detalle>) request.getAttribute("detalles"); 
 			DetalleDAO detalleDao = DAOFactory.getFactory().getDetalleDAO();
 			ProductoDAO productoDao = DAOFactory.getFactory().getProductoDAO();
+			CategoriaDAO categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
 			
 			Detalle deta;
 			Producto prod;
+			Categoria cate;
 			
 			int producto_id;
+			int categoria_id;
 			
 			if(lista_D != null){
 				out.println("<h1 class='tema'>Detalles</h1><table class='table' id='tabla_detalles'><tr>" +
+							"<td class='titulo'><strong>Codigo</strong></td>" +
 							"<td class='titulo'><strong>Producto</strong></td>" +
-							"<td class='titulo'><strong>Cantidad</strong></td></tr>");
+							"<td class='titulo'><strong>Cantidad</strong></td>" +
+							"<td class='titulo'><strong>Categoria</strong></td></tr>");
 				
 				for (int i = 0; i < lista_D.size(); i++){
-					Detalle control = lista_D.get(i);
-					deta = control;
+					deta = lista_D.get(i);
 					
 					producto_id =  detalleDao.obtenerProductoId(deta);
-					
 					prod = productoDao.read(producto_id);
 					
-	                out.println("<tr><td>" + prod.getNombre() + "</td>");
-	                out.println("<td>" + control.getCantidad() + "</td></tr>");
+					categoria_id = productoDao.categoriaId(prod.getId());
+					cate = categoriaDao.read(categoria_id);
+					
+					out.println("<tr><td>" + deta.getId() + "</td>");
+	                out.println("<td>" + prod.getNombre() + "</td>");
+	                out.println("<td>" + deta.getCantidad() + "</td>");
+	                out.println("<td>" + cate.getNombre() + "</td></tr>");
        			}
 				
 				out.println("</table>");

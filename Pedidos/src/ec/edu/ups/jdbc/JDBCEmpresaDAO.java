@@ -42,14 +42,14 @@ public class JDBCEmpresaDAO extends JDBCGenericDAO<Empresa, Integer> implements 
 
 	public List<Empresa> find() {
 		List<Empresa> list = new ArrayList<Empresa>();
-		ResultSet rs = sql.query("SELECT * FROM usuario");
+		ResultSet rs = sql.query("SELECT * FROM empresa");
 		try {
 			while (rs.next()) {
 				list.add(new Empresa(rs.getInt("emp_id"), rs.getString("emp_nombre"), null));
 			}
 
 		} catch (SQLException e) {
-			System.out.println(">>>WARNING (JDBCPersonaDAO:find): " + e.getMessage());
+			System.out.println(">>>WARNING (JDBCEmpresaDAO:find): " + e.getMessage());
 		}
 		return list;
 	}

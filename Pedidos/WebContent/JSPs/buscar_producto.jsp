@@ -1,6 +1,12 @@
+<%@page import="ec.edu.ups.dao.DAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="ec.edu.ups.modelo.Producto"%>
+<%@page import="ec.edu.ups.modelo.Categoria"%>
+<%@page import="ec.edu.ups.dao.ProductoDAO"%>
+<%@page import="ec.edu.ups.dao.CategoriaDAO"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +20,6 @@
 		String emp_id = request.getParameter("empresa_id");
 		String usu_id = request.getParameter("usuario_id");
 	%>
-	
-	<c:set var="lista" scope="request" value="${productos}"/>
-	<c:set var="proBus" scope="request" value="${producto}"/>
 
 	<header>
         <img id="logo" src="/Pedidos/img/logo_ups.png" alt="Logo" width="700" height="100"/>
@@ -61,36 +64,67 @@
     	<input type="submit" value="Buscar por Nombre">
     </form>
     <br>
+    
     <aside id="primer_metodo" style="dyssplay:none">
-    	<table class="table">
-		<tr>
-			<td><strong>Nombre</strong></td>
-			<td><strong>Cantidad</strong></td>
-			<td><strong>Categoria</strong></td>
-		</tr>
-		<c:forEach var="pro" items="${lista}">
-			<tr>
-				<td>${pro.nombre}</td>
-				<td>${pro.cantidad}</td>
-				<td>${pro.categoria}</td>
-			</tr>
-		</c:forEach>
-		</table>
+    
+    	<% 
+    		List<Producto> lista_P = (List<Producto>) request.getAttribute("productos"); 
+    		ProductoDAO productoDao = DAOFactory.getFactory().getProductoDAO();
+    		CategoriaDAO categoriaDao = DAOFactory.getFactory().getCategoriaDAO();
+    		
+    		Producto prod;	
+    		Categoria cate;
+    		
+    		int categoria_id;
+    	
+    		if(lista_P != null){
+    			out.println("<table class='table'><tr>" +
+    					"<td class='titulo'><strong>Codigo</strong></td>" +
+						"<td class='titulo'><strong>Nombre</strong></td>" +
+						"<td class='titulo'><strong>Cantidad</strong></td>" +
+						"<td class='titulo'><strong>Categoria</strong></td></tr>");
+    			
+    			for(int i = 0; i < lista_P.size(); i++){
+    				prod = lista_P.get(i);
+    				
+    				out.println("<tr><td>" + prod.getId() + "</td>");
+    				out.println("<td>" + prod.getNombre() + "</td>");
+    				out.println("<td>" + prod.getCantidad() + "</td>");
+    				
+    				categoria_id = productoDao.categoriaId(prod.getId());
+    				cate = categoriaDao.read(categoria_id);
+    				
+    				out.println("<td>" + cate.getNombre() + "</td></tr>");
+    			}
+    			
+    			out.println("</table>");
+   			}
+    	
+    	%>
     </aside>
     <br>
+    
     <aside id="segundo_metodo" style="dyssplay:none">
-    	<table class="table">
-		<tr>
-			<td><strong>Nombre</strong></td>
-			<td><strong>Cantidad</strong></td>
-			<td><strong>Categoria</strong></td>
-		</tr>
-		<tr>
-			<td>${proBus.nombre}</td>
-			<td>${proBus.cantidad}</td>
-			<td>${proBus.categoria}</td>
-		</tr>
-		</table>
+    	<%
+    		Producto prod2 = (Producto) request.getAttribute("producto");
+    	
+    		if(prod2 != null){
+    			out.println("<table class='table'><tr>" +
+    					"<td class='titulo'><strong>Codigo</strong></td>" +
+						"<td class='titulo'><strong>Nombre</strong></td>" +
+						"<td class='titulo'><strong>Cantidad</strong></td>" +
+						"<td class='titulo'><strong>Categoria</strong></td></tr>");
+    			
+    			out.println("<tr><td>" + prod2.getId() + "</td>");
+				out.println("<td>" + prod2.getNombre() + "</td>");
+				out.println("<td>" + prod2.getCantidad() + "</td>");
+				
+				categoria_id = productoDao.categoriaId(prod2.getId());
+				cate = categoriaDao.read(categoria_id);
+				
+				out.println("<td>" + cate.getNombre() + "</td></tr></table>");
+    		}
+    	%>
     </aside>
     
     <form action="/Pedidos/BuscarUsuarioAdmin" method="post">
