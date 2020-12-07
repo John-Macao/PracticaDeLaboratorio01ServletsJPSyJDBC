@@ -13,7 +13,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Empresa</title>
-	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/???.css">
+	<link rel="stylesheet" type="text/css" href="/Pedidos/CSS/empresas.css">
 </head>
 <body>
 
@@ -28,7 +28,7 @@
             </ul>
         </nav>
     </header>
-	
+	<div class="espacio"></div>
 	<% 
 		List<Empresa> lista_E = (List<Empresa>) request.getAttribute("empresas"); 
 		List<Producto> lista_P1 = (List<Producto>) request.getAttribute("productos_emp1");
@@ -45,10 +45,11 @@
 	%>
 	
 	<aside id="empresa_1">
-		<img class="emp" src="/Pedidos/img/AvonLogoBlack.jpg" alt="Logo"/>
+		<aside class="ima"><img class="emp" src="/Pedidos/img/AvonLogoBlack.jpg" width="100" height="10" alt="Logo"/></aside>
+		<br>
 		<h2>Nombre: <%= empresa_1.getNombre() %></h2>
 	
-		<table id="prods_1"> 
+		<table class="table" id="prods_1"> 
 			<%
 				out.println("<tr><td class='titulo'><strong>Codigo</strong></td>" +
 					"<td class='titulo'><strong>Nombre</strong></td>" +
@@ -73,10 +74,11 @@
 	
 	
 	<aside id="empresa_2">
-		<img class="emp" src="/Pedidos/img/Logo_Yanbal.png" alt="Logo"/>
+		<aside class="ima"><img class="emp" src="/Pedidos/img/Logo_Yanbal.png" alt="Logo"/></aside>
+		<br>
 		<h2>Nombre: <%= empresa_2.getNombre() %></h2>
 		
-		<table id="prods_2"> 
+		<table class="table" id="prods_2"> 
 			<%
 				for(int i = 0; i < lista_P2.size(); i++){
 					out.println("<tr><td class='titulo'><strong>Codigo</strong></td>" +

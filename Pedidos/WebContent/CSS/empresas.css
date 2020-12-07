@@ -1,0 +1,118 @@
+@charset "ISO-8859-1";
+
+body {
+    background-color: rgb(53,53,53);
+}
+
+.jump {
+    height: 2px;
+    clear: both;
+}
+
+header {
+    width: 100%;
+    color: rgb(0,128,220);
+    background-color: rgb(40,40,40);
+    float: left;
+}
+
+header #logo,
+header nav {
+    width: 20%;
+    float: left;
+}
+
+.emp{
+    height: 100%;
+    width: 100%;
+}
+
+header h1 {
+    width: 58%;
+    text-align: center;
+    float: left;
+}
+
+ul {
+    /*list-style-type: none;*/
+    margin-right: 30px;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
+a {
+	text-decoration: none;
+	color: rgb(0,128,220);
+}
+
+a:hover{
+	color: #B5B5A5;
+}
+
+hr {
+    background-color: black;
+    border: black solid 1px;
+}
+
+footer {
+    text-align: center;
+    clear: both;
+}
+
+footer fieldset {
+    display: inline;
+    width: 30%;
+    font-size: small;
+}
+
+.enlace {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
+p{
+	color: rgb(223,238,255);
+}
+
+h2{
+	color: rgb(0,128,220);
+	clear: both;
+	padding-left: 40%
+}
+
+.espacio{
+	padding-top: 130px;
+}
+
+aside{
+	width: 48%;
+	float: left;
+	margin-left: 20px;
+}
+
+.ima{
+	width: 70%;
+	height: 200px;
+	margin-left: 15%;
+}
+
+.table{
+	margin-left: 15%;
+	width: 70%;
+	background-color: rgb(40,40,40);
+	border: solid rgb(0,128,220);
+}
+
+td{
+	color: rgb(223,238,255);
+}
+
+.titulo{
+	color: rgb(0,128,220) !important;
+}
