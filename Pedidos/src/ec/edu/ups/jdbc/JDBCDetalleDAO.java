@@ -18,11 +18,6 @@ public class JDBCDetalleDAO extends JDBCGenericDAO<Detalle, Integer> implements 
 	
 	public void crear(Detalle detalle, int cabeceraId, int productoId) {
 		
-		/*
-		sql.update("INSERT peddetalle VALUES (" + detalle.getId() + ", '" + detalle.getCantidad() + "', "
-				+ cabeceraId + productoId + ")");
-		*/
-		
 		sql.update("INSERT peddetalle VALUES (0, '" + detalle.getCantidad() + "', "
 				+ cabeceraId +","+ productoId + ")");
 		

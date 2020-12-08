@@ -42,7 +42,7 @@ public class ListarProductosController extends HttpServlet {
 			int empresa_id = Integer.valueOf(request.getParameter("empresa_id")); 
 
 			if(page.equals("m")) {
-				listaProductos = productoDao.find();
+				listaProductos = productoDao.find(empresa_id);
 				
 				request.setAttribute("productos", listaProductos);
 				request.setAttribute("empresa_id", empresa_id);

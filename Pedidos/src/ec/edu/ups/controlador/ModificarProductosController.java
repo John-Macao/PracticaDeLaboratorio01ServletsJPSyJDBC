@@ -62,7 +62,7 @@ public class ModificarProductosController extends HttpServlet {
 			producto.setCategoria(categoria);
 			productoDao.update(producto);
 			
-			productos = productoDao.find();
+			productos = productoDao.find(empresa_id);
 			request.setAttribute("productos", productos);
 			request.setAttribute("empresa_id", empresa_id);
 			request.setAttribute("usuario_id", usuario_id);

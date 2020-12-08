@@ -17,11 +17,6 @@ public class JDBCCabeceraDAO extends JDBCGenericDAO<Cabecera, Integer> implement
 	
 	public void crear(Cabecera cabecera, int usuarioId) {
 		
-		/*
-		sql.update("INSERT pedcabecera VALUES (" + cabecera.getId() + ", '" + cabecera.getEstado() + "', "
-				+ usuarioId + ")");
-		*/
-		
 		sql.update("INSERT pedcabecera VALUES (0, '" + cabecera.getEstado() + "', "
 				+ usuarioId + ")");
 	}

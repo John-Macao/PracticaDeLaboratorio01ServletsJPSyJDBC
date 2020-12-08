@@ -17,11 +17,6 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 	}
 	
 	public void crear(Producto producto, int empresaId, int categoriaId) {
-		
-		/*
-		sql.update("INSERT producto VALUES (" + producto.getId() + ", '" + producto.getNombre() + "', "
-				+ producto.getCantidad() + ", '"+ producto.getEstado() + "', " + empresaId + categoriaId + ")");
-		*/
 		sql.update("INSERT producto VALUES (0, '" + producto.getNombre() + "', "
 				+ producto.getCantidad() + ", '"+ producto.getEstado() + "', " + empresaId +","+ categoriaId + ")");
 	}
@@ -39,20 +34,6 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 		}
 
 		return producto;
-	}
-	
-	public int empresaId(int id) {
-		int empId = 0;
-		ResultSet rs = sql.query("SELECT pro_emp_id FROM producto WHERE pro_id=" + id);
-		try {
-			if (rs != null && rs.next()) {
-				empId = rs.getInt("pro_emp_id");
-			}
-		} catch (SQLException e) {
-			System.out.println(">>>WARNING (JDBCPersonaDAO:read): " + e.getMessage());
-		}
-
-		return empId;
 	}
 	
 	public int categoriaId(int id) {
@@ -95,7 +76,7 @@ public class JDBCProductoDAO extends JDBCGenericDAO<Producto, Integer> implement
 	
 	public List<Producto> find(int empId) {
 		List<Producto> list = new ArrayList<Producto>();
-		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_emp_id=" + empId);
+		ResultSet rs = sql.query("SELECT * FROM producto WHERE pro_emp_id=" + empId + " AND pro_estado != 'e'");
 		try {
 			while (rs.next()) {
 				list.add(new Producto(rs.getInt("pro_id"), rs.getString("pro_nombre"), rs.getInt("pro_cantidad"), 

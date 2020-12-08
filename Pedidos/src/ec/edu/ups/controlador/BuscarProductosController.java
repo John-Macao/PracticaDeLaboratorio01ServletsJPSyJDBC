@@ -50,7 +50,7 @@ public class BuscarProductosController extends HttpServlet {
 				
 				producto_id = Integer.valueOf(request.getParameter("pro_id"));
 				producto = productoDao.read(producto_id);
-				productos = productoDao.find();
+				productos = productoDao.find(empresa_id);
 				
 				request.setAttribute("producto", producto);		
 				request.setAttribute("productos", productos);
